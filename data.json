@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "days": [
+    { "id": "2026-10-21", "date": "2026-10-21", "createdAt": "2026-10-19T09:00:00.000Z" }
+  ],
+  "tasks": [
+    { "id": "t-hammock", "day": "2026-10-21", "text": "יוגב משיג את הערסל שלי + פיצוי מ-ACE", "who": "yogev", "done": false, "doneAt": null, "createdAt": "2026-10-19T09:00:01.000Z" },
+    { "id": "t-talk", "day": "2026-10-21", "text": "נופר צריכה להמשיך את השיחה האישית", "who": "nofar", "done": false, "doneAt": null, "createdAt": "2026-10-19T09:00:02.000Z" },
+    { "id": "t-dream", "day": "2026-10-21", "text": "יוגב צריך לספר על החלום הפרוע", "who": "yogev", "done": false, "doneAt": null, "createdAt": "2026-10-19T09:00:03.000Z" },
+    { "id": "t-album", "day": "2026-10-21", "text": "צריך לאסוף את אלבום ארה\"ב של ההורים של נופר", "who": "both", "done": false, "doneAt": null, "createdAt": "2026-10-19T09:00:04.000Z" },
+    { "id": "t-oxy", "day": "2026-10-21", "text": "צריך ללמד את אוקסי להחזיר פולר", "who": "both", "done": false, "doneAt": null, "createdAt": "2026-10-19T09:00:05.000Z" }
+  ]
+}

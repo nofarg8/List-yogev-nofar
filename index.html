@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>דברים לעשות – יוגב ונופר</title>
+<meta name="theme-color" content="#FBF6F1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@400;600;700;800&family=Suez+One&display=swap">
+<style>
+/* Layout: a shared notebook on a warm desk. Hero with the couple's polaroid and a border-collie sticker,
+   then one notebook page per day, each task stamped "הושלם" in red ink once it's done. */
+:root {
+  --paper: #FBF6F1;
+  --surface: #FFFFFF;
+  --surface-2: #FFF9F2;
+  --ink: #221C19;
+  --muted: #6E615A;
+  --line: #EADFD5;
+  --rule: #F1C9D1;
+  --coat: #1F1A18;
+  --tan: #B8692C;
+  --tan-soft: #F6E3D1;
+  --heart: #D1456A;
+  --heart-soft: #FBE1E8;
+  --stamp: #C02A44;
+  --sticky: #F8E9A6;
+  --ok: #2F7D5B;
+  --shadow: 0 1px 2px rgba(60, 35, 20, .06), 0 8px 24px rgba(60, 35, 20, .08);
+  --paw: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23B8692C' fill-opacity='.07'%3E%3Cg transform='translate(22 26) rotate(-18)'%3E%3Cellipse cx='0' cy='6' rx='7' ry='6'/%3E%3Ccircle cx='-8' cy='-4' r='3'/%3E%3Ccircle cx='-3' cy='-9' r='3'/%3E%3Ccircle cx='3' cy='-9' r='3'/%3E%3Ccircle cx='8' cy='-4' r='3'/%3E%3C/g%3E%3Cg transform='translate(84 82) rotate(14)'%3E%3Cellipse cx='0' cy='6' rx='7' ry='6'/%3E%3Ccircle cx='-8' cy='-4' r='3'/%3E%3Ccircle cx='-3' cy='-9' r='3'/%3E%3Ccircle cx='3' cy='-9' r='3'/%3E%3Ccircle cx='8' cy='-4' r='3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+  --font-display: "Suez One", "Assistant", "Arial Hebrew", serif;
+  --font-body: "Assistant", "Segoe UI", "Arial Hebrew", Arial, sans-serif;
+  --font-hand: "Amatic SC", "Assistant", cursive;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #191513; --surface: #241F1C; --surface-2: #2B2522; --ink: #F4EDE7; --muted: #B6A89F;
+    --line: #3B332F; --rule: #5A3440; --coat: #0F0C0B; --tan: #E39A5B; --tan-soft: #3E2C1E;
+    --heart: #F2789A; --heart-soft: #46242F; --stamp: #FF6B82; --sticky: #4A4026; --ok: #6CCB9C;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.35);
+    --paw: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23E39A5B' fill-opacity='.06'%3E%3Cg transform='translate(22 26) rotate(-18)'%3E%3Cellipse cx='0' cy='6' rx='7' ry='6'/%3E%3Ccircle cx='-8' cy='-4' r='3'/%3E%3Ccircle cx='-3' cy='-9' r='3'/%3E%3Ccircle cx='3' cy='-9' r='3'/%3E%3Ccircle cx='8' cy='-4' r='3'/%3E%3C/g%3E%3Cg transform='translate(84 82) rotate(14)'%3E%3Cellipse cx='0' cy='6' rx='7' ry='6'/%3E%3Ccircle cx='-8' cy='-4' r='3'/%3E%3Ccircle cx='-3' cy='-9' r='3'/%3E%3Ccircle cx='3' cy='-9' r='3'/%3E%3Ccircle cx='8' cy='-4' r='3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #191513; --surface: #241F1C; --surface-2: #2B2522; --ink: #F4EDE7; --muted: #B6A89F;
+  --line: #3B332F; --rule: #5A3440; --coat: #0F0C0B; --tan: #E39A5B; --tan-soft: #3E2C1E;
+  --heart: #F2789A; --heart-soft: #46242F; --stamp: #FF6B82; --sticky: #4A4026; --ok: #6CCB9C;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper) var(--paw);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+[hidden] { display: none !important; }
+img { max-width: 100%; display: block; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--heart); outline-offset: 2px; border-radius: 6px; }
+
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding-block: 20px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  gap: 22px;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px 28px;
+  align-items: center;
+  padding-block: 8px 4px;
+}
+.eyebrow {
+  font-family: var(--font-hand);
+  font-size: 1.7rem;
+  line-height: 1;
+  color: var(--tan);
+  letter-spacing: .02em;
+  margin: 0 0 6px;
+}
+h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 7vw, 3.9rem);
+  line-height: 1.02;
+  margin: 0;
+  text-wrap: balance;
+}
+.names {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3.6vw, 1.75rem);
+  background: var(--heart-soft);
+  color: var(--ink);
+  padding: 4px 16px 6px;
+  border-radius: 4px;
+  transform: rotate(-1.5deg);
+  box-shadow: var(--shadow);
+}
+.names svg { width: 22px; height: 22px; color: var(--heart); }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; align-items: center; }
+
+.polaroid-wrap { position: relative; width: 210px; justify-self: end; }
+.polaroid {
+  margin: 0;
+  background: #FFFFFF;
+  padding: 10px 10px 34px;
+  box-shadow: 0 2px 4px rgba(40,20,10,.12), 0 14px 34px rgba(40,20,10,.18);
+  transform: rotate(3.5deg);
+  border-radius: 2px;
+}
+.polaroid img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 28%; }
+.polaroid figcaption {
+  font-family: var(--font-hand); font-size: 1.45rem; color: #3A2A24;
+  text-align: center; margin-top: 4px; line-height: 1.1;
+}
+.tape {
+  position: absolute; top: -12px; left: 50%; width: 92px; height: 26px;
+  transform: translateX(-50%) rotate(-4deg);
+  background: var(--sticky); opacity: .85;
+  box-shadow: 0 1px 2px rgba(0,0,0,.08);
+}
+.collie-sticker {
+  position: absolute; width: 104px; height: 104px;
+  bottom: -26px; right: -34px;
+  filter: drop-shadow(0 6px 10px rgba(40,20,10,.25));
+  transform: rotate(-8deg);
+}
+
+/* ---------- Chips & pills ---------- */
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--line);
+  font-weight: 600; font-size: .95rem;
+  font-variant-numeric: tabular-nums;
+}
+.pill strong { font-weight: 800; }
+.sync { border: 1px solid var(--line); background: var(--surface); }
+.sync .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); flex: none; }
+.sync[data-state="ok"] .dot { background: var(--ok); }
+.sync[data-state="saving"] .dot { background: var(--tan); animation: pulse 1s infinite ease-in-out; }
+.sync[data-state="error"] .dot, .sync[data-state="auth"] .dot { background: var(--stamp); }
+.sync[data-state="readonly"] .dot { background: var(--tan); }
+@keyframes pulse { 50% { opacity: .3; } }
+
+/* ---------- Toolbar ---------- */
+.toolbar {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  justify-content: space-between;
+}
+.toolbar-group { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1.5px solid var(--ink);
+  background: var(--surface);
+  padding: 9px 16px; border-radius: 10px;
+  font-weight: 700; font-size: .98rem;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+.btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+.btn svg { width: 18px; height: 18px; }
+.btn.primary { background: var(--coat); color: #FFF7EF; border-color: var(--coat); box-shadow: 3px 3px 0 var(--tan); }
+.btn.primary:hover { box-shadow: 4px 4px 0 var(--tan); }
+.btn[aria-pressed="true"] { background: var(--sticky); }
+.btn.ghost { border-color: var(--line); box-shadow: none; background: transparent; font-weight: 600; }
+.btn.ghost:hover { background: var(--surface); }
+.btn.small { padding: 6px 12px; font-size: .9rem; }
+.btn.danger { border-color: var(--stamp); color: var(--stamp); box-shadow: 3px 3px 0 var(--stamp); }
+
+.add-day {
+  background: var(--sticky);
+  border-radius: 4px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transform: rotate(-.6deg);
+  display: grid; gap: 12px;
+}
+.add-day h2 { font-family: var(--font-hand); font-size: 2rem; line-height: 1; margin: 0; }
+.add-day .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+.field { display: grid; gap: 4px; min-width: 0; }
+.field label { font-size: .85rem; font-weight: 700; color: var(--muted); letter-spacing: .02em; }
+.input {
+  border: 1.5px solid var(--line); background: var(--surface);
+  border-radius: 10px; padding: 9px 12px; min-width: 0; width: 100%;
+}
+.input:focus { border-color: var(--tan); outline: none; box-shadow: 0 0 0 3px var(--tan-soft); }
+.preview-title { font-weight: 700; color: var(--ink); }
+.hint { font-size: .9rem; color: var(--muted); margin: 0; }
+.hint.err { color: var(--stamp); font-weight: 700; }
+
+/* ---------- Day page ---------- */
+.days { display: grid; gap: 28px; }
+.day {
+  position: relative;
+  background: var(--surface);
+  border-radius: 6px 6px 10px 10px;
+  box-shadow: var(--shadow);
+  padding: 22px 22px 18px;
+  padding-inline-start: 56px;
+  overflow: hidden;
+}
+/* binder holes + margin line on the start (right) edge */
+.day::before {
+  content: ""; position: absolute; inset-block: 0; inset-inline-start: 40px;
+  width: 2px; background: var(--rule);
+}
+.day::after {
+  content: ""; position: absolute; inset-block: 18px; inset-inline-start: 12px; width: 14px;
+  background: radial-gradient(circle at 7px 7px, var(--paper) 6px, transparent 7px) 0 0 / 14px 46px repeat-y;
+}
+.day.today { outline: 2.5px solid var(--tan); outline-offset: 3px; }
+
+.day-head {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; align-items: start;
+  min-height: 86px;
+}
+.day-date { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.day-date .d {
+  font-family: var(--font-display); font-size: clamp(1.9rem, 5.5vw, 2.5rem); line-height: 1;
+  font-variant-numeric: tabular-nums; letter-spacing: .01em;
+}
+.day-date .w {
+  font-family: var(--font-display); font-size: clamp(1.2rem, 3.6vw, 1.5rem); color: var(--tan);
+}
+.badge-today {
+  font-size: .8rem; font-weight: 800; letter-spacing: .04em;
+  background: var(--tan); color: #FFF8F0; padding: 2px 10px; border-radius: 999px; align-self: center;
+}
+.day-sub { margin: 6px 0 0; font-family: var(--font-hand); font-size: 1.6rem; line-height: 1.1; color: var(--muted); }
+.day-side { display: grid; justify-items: end; gap: 8px; }
+.paws { display: flex; gap: 3px; flex-wrap: wrap; justify-content: flex-end; max-width: 180px; }
+.paws svg { width: 20px; height: 20px; color: var(--line); transition: color .3s ease, transform .3s ease; }
+.paws svg.on { color: var(--tan); transform: rotate(-12deg); }
+.count { font-weight: 800; font-variant-numeric: tabular-nums; font-size: .95rem; color: var(--muted); }
+
+.tasks { list-style: none; margin: 14px 0 0; padding: 0; display: grid; }
+.task {
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  min-height: 40px; padding-block: 6px;
+  position: relative;
+}
+.check {
+  flex: none; width: 30px; height: 30px; border-radius: 7px;
+  border: 2px solid var(--ink); background: var(--surface);
+  display: grid; place-items: center; padding: 0;
+  transition: background .2s ease;
+}
+.check:hover { background: var(--heart-soft); }
+.check svg { width: 22px; height: 22px; overflow: visible; }
+.check path { fill: none; stroke: var(--stamp); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 30; stroke-dashoffset: 30; transition: stroke-dashoffset .35s ease; }
+.task.done .check path { stroke-dashoffset: 0; }
+.task-text { flex: 1 1 150px; min-width: 0; font-size: 1.08rem; font-weight: 600; overflow-wrap: anywhere; }
+.task.done .task-text { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--stamp); text-decoration-thickness: 2px; }
+.who {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .82rem; font-weight: 800; padding: 2px 10px; border-radius: 999px;
+  background: var(--surface-2); border: 1px solid var(--line); white-space: nowrap;
+}
+.who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.who.yogev { background: var(--tan-soft); border-color: transparent; }
+.who.yogev::before { background: var(--tan); }
+.who.nofar { background: var(--heart-soft); border-color: transparent; }
+.who.nofar::before { background: var(--heart); }
+.who.both::before { background: var(--ink); }
+
+.stamp {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-display); color: var(--stamp);
+  border: 3px double var(--stamp); border-radius: 6px;
+  padding: 1px 10px 2px; line-height: 1.2; font-size: 1.05rem;
+  transform: rotate(-8deg);
+  white-space: nowrap;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.75'/%3E%3C/filter%3E%3Crect width='160' height='60' filter='url(%23n)'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.75'/%3E%3C/filter%3E%3Crect width='160' height='60' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.stamp svg { width: 16px; height: 16px; }
+.stamp small { font-family: var(--font-body); font-weight: 700; font-size: .72rem; opacity: .9; font-variant-numeric: tabular-nums; }
+.stamp.just { animation: stampIn .5s cubic-bezier(.2, 1.4, .4, 1) both; }
+@keyframes stampIn {
+  0% { transform: scale(2.4) rotate(-22deg); opacity: 0; }
+  55% { transform: scale(.9) rotate(-7deg); opacity: 1; }
+  100% { transform: scale(1) rotate(-8deg); opacity: 1; }
+}
+.day-stamp {
+  position: absolute; top: 18px; inset-inline-end: 150px;
+  font-size: 1.5rem; padding: 4px 14px; transform: rotate(-11deg);
+  pointer-events: none;
+}
+.task-tools { display: flex; gap: 4px; margin-inline-start: auto; }
+.icon-btn {
+  width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--surface); display: grid; place-items: center; padding: 0; color: var(--muted);
+}
+.icon-btn:hover { color: var(--ink); border-color: var(--ink); }
+.icon-btn.del:hover { color: var(--stamp); border-color: var(--stamp); }
+.icon-btn svg { width: 17px; height: 17px; }
+
+.edit-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; width: 100%; padding-block: 6px; }
+.edit-row .input { flex: 1 1 220px; }
+
+.seg { display: inline-flex; border: 1.5px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); }
+.seg button { border: 0; background: transparent; padding: 7px 12px; font-weight: 700; font-size: .9rem; color: var(--muted); }
+.seg button + button { border-inline-start: 1.5px solid var(--line); }
+.seg button[aria-pressed="true"] { color: var(--ink); background: var(--tan-soft); }
+.seg button[aria-pressed="true"][data-who="nofar"] { background: var(--heart-soft); }
+.seg button[aria-pressed="true"][data-who="both"] { background: var(--sticky); }
+
+.add-task {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  margin-top: 12px; padding-top: 14px; border-top: 1.5px dashed var(--line);
+}
+.add-task .input { flex: 1 1 230px; }
+.day-danger { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; justify-content: flex-end; }
+.day-danger p { margin: 0; font-weight: 700; color: var(--stamp); }
+
+.empty {
+  text-align: center; padding: 34px 20px; background: var(--surface); border-radius: 10px; box-shadow: var(--shadow);
+  display: grid; justify-items: center; gap: 10px;
+}
+.empty svg { width: 120px; height: 120px; }
+.empty h2 { font-family: var(--font-display); font-weight: 400; margin: 0; font-size: 1.5rem; }
+.empty p { margin: 0; color: var(--muted); max-width: 46ch; }
+
+footer {
+  display: flex; align-items: center; gap: 14px; justify-content: center;
+  color: var(--muted); font-size: .95rem; text-align: center; flex-wrap: wrap;
+}
+footer svg { width: 64px; height: 64px; flex: none; }
+footer .hand { font-family: var(--font-hand); font-size: 1.6rem; color: var(--ink); line-height: 1.1; }
+
+/* ---------- Dialog ---------- */
+dialog {
+  border: 0; border-radius: 14px; padding: 0; width: min(560px, calc(100vw - 32px));
+  background: var(--surface); color: var(--ink); box-shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+dialog::backdrop { background: rgba(20, 12, 8, .45); }
+.dlg { padding: 22px 22px 18px; display: grid; gap: 12px; }
+.dlg h2 { font-family: var(--font-display); font-weight: 400; margin: 0; font-size: 1.5rem; }
+.dlg p { margin: 0; }
+.dlg ol { margin: 0; padding-inline-start: 22px; display: grid; gap: 4px; }
+.dlg a { color: var(--tan); font-weight: 700; }
+.dlg code { background: var(--surface-2); border: 1px solid var(--line); border-radius: 5px; padding: 0 5px; direction: ltr; unicode-bidi: isolate; }
+.dlg .row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-start; }
+.dlg .need { background: var(--sticky); padding: 8px 12px; border-radius: 8px; font-weight: 700; }
+
+.toast {
+  position: fixed; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%);
+  background: var(--coat); color: #FFF7EF; padding: 10px 18px; border-radius: 10px; font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25); z-index: 20; max-width: calc(100vw - 32px);
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .polaroid-wrap { width: 170px; justify-self: center; order: -1; margin-top: 8px; }
+  .collie-sticker { width: 84px; height: 84px; right: -40px; bottom: -18px; }
+  .day { padding: 18px 14px 14px; padding-inline-start: 44px; }
+  .day::before { inset-inline-start: 32px; }
+  .day::after { inset-inline-start: 8px; }
+  .day-head { grid-template-columns: minmax(0, 1fr); }
+  .day-side { justify-items: start; grid-auto-flow: column; align-items: center; }
+  .paws { justify-content: flex-start; }
+  .day-stamp { inset-inline-end: 14px; top: 64px; font-size: 1.2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Illustrations -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="sticker-clip"><circle cx="100" cy="100" r="92"/></clipPath>
+    <symbol id="i-paw" viewBox="0 0 24 24"><g fill="currentColor"><ellipse cx="12" cy="16" rx="5.4" ry="4.6"/><ellipse cx="5.2" cy="10.2" rx="2.3" ry="2.8"/><ellipse cx="9.3" cy="6" rx="2.3" ry="2.9"/><ellipse cx="14.7" cy="6" rx="2.3" ry="2.9"/><ellipse cx="18.8" cy="10.2" rx="2.3" ry="2.8"/></g></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></g></symbol>
+
+    <!-- Border collie head: semi-prick ears, white blaze, tan brows -->
+    <g id="collie-head">
+      <path d="M38 210 C34 168 58 146 100 146 C142 146 166 168 162 210 Z" fill="#FFFFFF"/>
+      <path d="M46 176 C54 166 66 162 74 166 M154 176 C146 166 134 162 126 166" stroke="#E7DCD2" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M50 84 C40 58 42 34 54 20 C70 28 86 44 92 60 Z" fill="#1F1A18"/>
+      <path d="M150 84 C160 58 158 34 146 20 C130 28 114 44 108 60 Z" fill="#1F1A18"/>
+      <path d="M58 70 C54 54 55 40 60 32 C70 40 79 50 84 60 Z" fill="#5B3A33"/>
+      <path d="M142 70 C146 54 145 40 140 32 C130 40 121 50 116 60 Z" fill="#5B3A33"/>
+      <path d="M54 20 C62 24 66 31 64 38 C59 33 55 27 54 20 Z" fill="#3A2F2B"/>
+      <path d="M146 20 C138 24 134 31 136 38 C141 33 145 27 146 20 Z" fill="#3A2F2B"/>
+      <path d="M100 44 C136 44 160 66 161 98 C162 122 151 142 136 154 L64 154 C49 142 38 122 39 98 C40 66 64 44 100 44 Z" fill="#1F1A18"/>
+      <path d="M100 50 C95 50 93 62 92 76 C90 93 80 104 70 117 C61 130 63 148 77 160 L123 160 C137 148 139 130 130 117 C120 104 110 93 108 76 C107 62 105 50 100 50 Z" fill="#FFFFFF"/>
+      <ellipse cx="73" cy="84" rx="5" ry="3.6" fill="#C9772F"/>
+      <ellipse cx="127" cy="84" rx="5" ry="3.6" fill="#C9772F"/>
+      <circle cx="76" cy="98" r="8.5" fill="#6B3A17"/>
+      <circle cx="124" cy="98" r="8.5" fill="#6B3A17"/>
+      <circle cx="76" cy="98" r="5.4" fill="#140C08"/>
+      <circle cx="124" cy="98" r="5.4" fill="#140C08"/>
+      <circle cx="73.6" cy="95.4" r="2.2" fill="#FFFFFF"/>
+      <circle cx="121.6" cy="95.4" r="2.2" fill="#FFFFFF"/>
+      <path d="M86 126 C86 119 114 119 114 126 C114 134 105 139 100 139 C95 139 86 134 86 126 Z" fill="#1F1A18"/>
+      <ellipse cx="95" cy="123.5" rx="4" ry="1.8" fill="#5A4D48"/>
+    </g>
+  </defs>
+</svg>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="collie-happy" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="96" fill="#FFFFFF"/>
+    <circle cx="100" cy="100" r="90" fill="#F7E3CC"/>
+    <g clip-path="url(#sticker-clip)">
+      <use href="#collie-head"/>
+      <path d="M100 139 L100 145 M100 145 C96 151 88 151 84 146 M100 145 C104 151 112 151 116 146" stroke="#1F1A18" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M93 148 C92 162 108 162 107 148 C104 151 96 151 93 148 Z" fill="#E0577A"/>
+    </g>
+  </symbol>
+  <symbol id="collie-puller" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="96" fill="#FFFFFF"/>
+    <circle cx="100" cy="100" r="90" fill="#FBE1E8"/>
+    <g clip-path="url(#sticker-clip)">
+      <use href="#collie-head"/>
+      <path d="M90 142 C95 147 105 147 110 142" stroke="#1F1A18" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="100" cy="150" rx="44" ry="14" fill="none" stroke="#E07B39" stroke-width="11"/>
+      <ellipse cx="100" cy="150" rx="44" ry="14" fill="none" stroke="#F4A56B" stroke-width="3" stroke-dasharray="6 9"/>
+    </g>
+  </symbol>
+</svg>
+
+<main class="wrap">
+  <header class="hero">
+    <div>
+      <p class="eyebrow">יומן משימות משותף</p>
+      <h1>דברים לעשות</h1>
+      <div class="names"><span>יוגב ונופר</span><svg aria-hidden="true"><use href="#i-heart"/></svg></div>
+      <div class="hero-meta">
+        <span class="pill" id="overall" aria-live="polite">טוען…</span>
+        <button class="pill sync" id="sync" type="button" data-state="loading" aria-label="מצב שמירה לגיטהאב">
+          <span class="dot" aria-hidden="true"></span><span id="sync-text">טוען מגיטהאב…</span>
+        </button>
+      </div>
+    </div>
+    <div class="polaroid-wrap">
+      <span class="tape" aria-hidden="true"></span>
+      <figure class="polaroid">
+        <img src="assets/theme-photo.jpg" alt="יוגב ונופר ליד שולחן מלא פתקים ורשימת משימות" width="560" height="995">
+        <figcaption>צוות משימות</figcaption>
+      </figure>
+      <svg class="collie-sticker" viewBox="0 0 200 200" role="img" aria-label="איור של כלב בורדר קולי"><use href="#collie-happy"/></svg>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="toolbar-group">
+      <button class="btn primary" id="btn-add-day" type="button" aria-expanded="false" aria-controls="add-day">
+        <svg aria-hidden="true"><use href="#i-cal"/></svg> הוספת יום
+      </button>
+      <button class="btn" id="btn-edit" type="button" aria-pressed="false">
+        <svg aria-hidden="true"><use href="#i-pen"/></svg> מצב עריכה
+      </button>
+    </div>
+    <button class="btn ghost small" id="btn-settings" type="button">
+      <svg aria-hidden="true"><use href="#i-link"/></svg> חיבור לגיטהאב
+    </button>
+  </div>
+
+  <form class="add-day" id="add-day" hidden>
+    <h2>יום חדש ברשימה</h2>
+    <div class="row">
+      <div class="field">
+        <label for="new-day-date">תאריך</label>
+        <input class="input" type="date" id="new-day-date" required>
+      </div>
+      <button class="btn primary" type="submit"><svg aria-hidden="true"><use href="#i-plus"/></svg> הוספת היום</button>
+    </div>
+    <p class="hint" id="new-day-preview"></p>
+  </form>
+
+  <section class="days" id="days" aria-label="ימים ומשימות">
+    <div class="empty">
+      <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#collie-happy"/></svg>
+      <h2>טוענים את הרשימה</h2>
+      <p>עוד רגע יופיעו כאן הימים והמשימות שלכם.</p>
+    </div>
+  </section>
+
+  <footer>
+    <svg viewBox="0 0 200 200" role="img" aria-label="אוקסי עם צעצוע פולר"><use href="#collie-puller"/></svg>
+    <div>
+      <div class="hand">אוקסי שומרת על הרשימה</div>
+      <div>כל שינוי נשמר כקובץ במאגר בגיטהאב</div>
+    </div>
+  </footer>
+</main>
+
+<dialog id="settings" aria-labelledby="settings-title">
+  <form class="dlg" id="settings-form" method="dialog">
+    <h2 id="settings-title">חיבור המכשיר לגיטהאב</h2>
+    <p class="need" id="settings-need" hidden>כדי לשמור שינויים צריך לחבר את המכשיר הזה פעם אחת.</p>
+    <p>הרשימה נשמרת בקובץ <code>data.json</code> במאגר שלכם. כדי שהמכשיר יוכל לשמור, מדביקים כאן מפתח גישה של גיטהאב. עושים את זה פעם אחת בכל טלפון או מחשב.</p>
+    <ol>
+      <li>נכנסים ל<a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">יצירת מפתח בגיטהאב</a>.</li>
+      <li>תחת Repository access בוחרים Only select repositories, ואז את <code id="repo-name">list-yogev-nofar</code>.</li>
+      <li>תחת Permissions בוחרים Contents ומסמנים Read and write.</li>
+      <li>לוחצים Generate token, מעתיקים ומדביקים כאן.</li>
+    </ol>
+    <div class="field">
+      <label for="token-input">מפתח גישה</label>
+      <input class="input" id="token-input" type="password" autocomplete="off" spellcheck="false" dir="ltr" placeholder="github_pat_…">
+    </div>
+    <p class="hint" id="settings-msg" aria-live="polite">המפתח נשמר רק בדפדפן של המכשיר הזה.</p>
+    <div class="row">
+      <button class="btn primary" type="button" id="token-save">שמירה וחיבור</button>
+      <button class="btn danger small" type="button" id="token-remove" hidden>ניתוק המכשיר</button>
+      <button class="btn ghost" type="button" id="settings-close">סגירה</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Config ---------- */
+  var CFG = { owner: 'nofarg8', repo: 'list-yogev-nofar', branch: 'main', path: 'data.json' };
+  if (/\.github\.io$/i.test(location.hostname)) {
+    CFG.owner = location.hostname.split('.')[0];
+    var seg = location.pathname.split('/').filter(Boolean)[0];
+    if (seg && !/\.html?$/i.test(seg)) CFG.repo = seg;
+  }
+  var API = 'https://api.github.com/repos/' + CFG.owner + '/' + CFG.repo + '/contents/' + CFG.path;
+  var WEEKDAYS = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
+  var WHO = { yogev: 'יוגב', nofar: 'נופר', both: 'שנינו' };
+
+  /* ---------- Safe storage ---------- */
+  var LS = {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+    del: function (k) { try { localStorage.removeItem(k); } catch (e) {} }
+  };
+
+  /* ---------- State ---------- */
+  var token = LS.get('lyn.token') || '';
+  var state = null;          // { version, days:[], tasks:[] }
+  var sha = null;
+  var pending = [];          // ops not yet committed
+  var flushing = false, flushTimer = null;
+  var editMode = LS.get('lyn.edit') === '1';
+  var drafts = {};           // dayId -> { text, who }
+  var editing = null;        // { id, text, who }
+  var confirmDay = null;
+  var justStamped = null, justDay = null;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var daysEl = $('days');
+
+  /* ---------- Helpers ---------- */
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function parseDate(iso) { var p = iso.split('-').map(Number); return new Date(p[0], p[1] - 1, p[2]); }
+  function fmtDate(iso) { var p = iso.split('-'); return p[2] + '.' + p[1] + '.' + p[0].slice(2); }
+  function weekday(iso) { return WEEKDAYS[parseDate(iso).getDay()]; }
+  function todayIso() { var d = new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function fmtStamp(isoTime) {
+    if (!isoTime) return '';
+    var d = new Date(isoTime);
+    if (isNaN(d)) return '';
+    return pad(d.getDate()) + '.' + pad(d.getMonth() + 1) + ' · ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  }
+  function uid() { return 't' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  function emptyData() { return { version: 1, days: [], tasks: [] }; }
+  function normalize(d) {
+    d = d && typeof d === 'object' ? d : emptyData();
+    d.days = Array.isArray(d.days) ? d.days : [];
+    d.tasks = Array.isArray(d.tasks) ? d.tasks : [];
+    d.version = d.version || 1;
+    return d;
+  }
+  function enc(str) {
+    var bytes = new TextEncoder().encode(str), bin = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin);
+  }
+  function dec(b64) {
+    var bin = atob(String(b64).replace(/\s/g, ''));
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }
+  var toastTimer;
+  function toast(msg) {
+    var t = $('toast'); t.textContent = msg; t.hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.hidden = true; }, 2600);
+  }
+
+  /* ---------- Sync status ---------- */
+  function setSync(st, text) {
+    var labels = {
+      loading: 'טוען מגיטהאב…',
+      ok: 'שמור בגיטהאב',
+      saving: 'שומר בגיטהאב…',
+      readonly: 'תצוגה בלבד · לחצו לחיבור',
+      error: 'השמירה נכשלה · לחצו לנסות שוב',
+      auth: 'המפתח לא תקין · לחצו לחיבור מחדש',
+      offline: 'אין חיבור · מוצגת גרסה שמורה'
+    };
+    $('sync').dataset.state = st;
+    $('sync-text').textContent = text || labels[st] || '';
+  }
+
+  /* ---------- GitHub I/O ---------- */
+  function ghHeaders(json) {
+    var h = { 'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + token };
+    if (json) h['Content-Type'] = 'application/json';
+    return h;
+  }
+  function httpError(r) { var e = new Error('HTTP ' + r.status); e.status = r.status; return e; }
+
+  function ghGet() {
+    return fetch(API + '?ref=' + encodeURIComponent(CFG.branch) + '&t=' + Date.now(), { headers: ghHeaders(), cache: 'no-store' })
+      .then(function (r) {
+        if (r.status === 404) return { data: emptyData(), sha: null };
+        if (!r.ok) throw httpError(r);
+        return r.json().then(function (j) { return { data: normalize(JSON.parse(dec(j.content))), sha: j.sha }; });
+      });
+  }
+  function publicGet() {
+    return fetch('data.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) {
+      if (!r.ok) throw httpError(r);
+      return r.json().then(function (j) { return { data: normalize(j), sha: null }; });
+    });
+  }
+  function ghPut(body) {
+    return fetch(API, { method: 'PUT', headers: ghHeaders(true), body: JSON.stringify(body) }).then(function (r) {
+      if (r.status === 409 || r.status === 422) { var e = httpError(r); e.conflict = true; throw e; }
+      if (!r.ok) throw httpError(r);
+      return r.json();
+    });
+  }
+
+  /* ---------- Operations (idempotent, replayable on top of newer data) ---------- */
+  function findTask(s, id) { for (var i = 0; i < s.tasks.length; i++) if (s.tasks[i].id === id) return s.tasks[i]; return null; }
+  function applyOp(s, op) {
+    var t;
+    switch (op.type) {
+      case 'addDay':
+        if (!s.days.some(function (d) { return d.id === op.date; })) s.days.push({ id: op.date, date: op.date, createdAt: op.at });
+        break;
+      case 'delDay':
+        s.days = s.days.filter(function (d) { return d.id !== op.id; });
+        s.tasks = s.tasks.filter(function (x) { return x.day !== op.id; });
+        break;
+      case 'addTask':
+        if (!findTask(s, op.id)) s.tasks.push({ id: op.id, day: op.day, text: op.text, who: op.who, done: false, doneAt: null, createdAt: op.at });
+        break;
+      case 'toggle':
+        t = findTask(s, op.id); if (t) { t.done = op.done; t.doneAt = op.done ? op.at : null; }
+        break;
+      case 'editTask':
+        t = findTask(s, op.id); if (t) { t.text = op.text; t.who = op.who; }
+        break;
+      case 'delTask':
+        s.tasks = s.tasks.filter(function (x) { return x.id !== op.id; });
+        break;
+    }
+    return s;
+  }
+  function opLabel(op) {
+    switch (op.type) {
+      case 'addDay': return 'יום חדש: ' + fmtDate(op.date);
+      case 'delDay': return 'נמחק יום ' + fmtDate(op.id);
+      case 'addTask': return 'משימה חדשה: ' + op.text;
+      case 'toggle': return (op.done ? 'הושלם: ' : 'בוטל סימון: ') + (op.text || '');
+      case 'editTask': return 'עריכה: ' + op.text;
+      case 'delTask': return 'נמחקה משימה: ' + (op.text || '');
+    }
+    return 'עדכון רשימה';
+  }
+
+  function act(op) {
+    if (!state) return;
+    if (!token) { openSettings(true); return; }
+    op.at = op.at || new Date().toISOString();
+    applyOp(state, op);
+    pending.push(op);
+    cacheLocal();
+    render();
+    scheduleFlush(500);
+  }
+
+  function scheduleFlush(ms) {
+    clearTimeout(flushTimer);
+    flushTimer = setTimeout(flush, ms);
+  }
+
+  function flush() {
+    if (flushing || !pending.length || !token) return;
+    flushing = true;
+    setSync('saving');
+    var attempts = 0;
+
+    function attempt() {
+      var n = pending.length;
+      var msg = opLabel(pending[0]) + (n > 1 ? ' (+' + (n - 1) + ')' : '');
+      var body = { message: msg.slice(0, 120), content: enc(JSON.stringify(state, null, 2) + '\n'), branch: CFG.branch };
+      if (sha) body.sha = sha;
+      return ghPut(body).then(function (j) {
+        sha = j.content && j.content.sha;
+        pending.splice(0, n);
+      }).catch(function (e) {
+        if (e.conflict && attempts < 3) {
+          attempts++;
+          return ghGet().then(function (remote) {
+            var s = remote.data;
+            pending.forEach(function (o) { applyOp(s, o); });
+            state = s; sha = remote.sha;
+            render();
+            return attempt();
+          });
+        }
+        throw e;
+      });
+    }
+
+    attempt().then(function () {
+      flushing = false;
+      cacheLocal();
+      if (pending.length) scheduleFlush(300); else setSync('ok');
+    }).catch(function (e) {
+      flushing = false;
+      if (e.status === 401 || e.status === 403) setSync('auth');
+      else setSync('error');
+      toast(e.status === 401 || e.status === 403 ? 'גיטהאב לא אישר את השמירה. בדקו את המפתח.' : 'לא הצלחנו לשמור. השינוי מחכה וננסה שוב.');
+    });
+  }
+
+  function cacheLocal() { if (state) LS.set('lyn.cache', JSON.stringify(state)); }
+
+  function refresh(silent) {
+    if (flushing || pending.length) return Promise.resolve();
+    var p = token ? ghGet() : publicGet();
+    return p.then(function (remote) {
+      var changed = JSON.stringify(remote.data) !== JSON.stringify(state);
+      state = remote.data; sha = remote.sha;
+      cacheLocal();
+      setSync(token ? 'ok' : 'readonly');
+      if (changed) render();
+    }).catch(function (e) {
+      if (e && (e.status === 401 || e.status === 403)) setSync('auth');
+      else if (!silent) setSync(state ? 'offline' : 'error', state ? null : 'לא הצלחנו לטעון · לחצו לנסות שוב');
+      if (!state) renderLoadError();
+    });
+  }
+
+  /* ---------- Render ---------- */
+  function sortedDays() { return state.days.slice().sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; }); }
+  function tasksOf(dayId) {
+    return state.tasks.filter(function (t) { return t.day === dayId; })
+      .sort(function (a, b) { return (a.createdAt || '') < (b.createdAt || '') ? -1 : 1; });
+  }
+
+  function segHtml(name, who) {
+    return '<div class="seg" role="group" aria-label="מי אחראי">' +
+      ['yogev', 'nofar', 'both'].map(function (w) {
+        return '<button type="button" data-seg="' + name + '" data-who="' + w + '" aria-pressed="' + (who === w) + '">' + WHO[w] + '</button>';
+      }).join('') + '</div>';
+  }
+
+  function taskHtml(t) {
+    if (editing && editing.id === t.id) {
+      return '<li class="task">' +
+        '<div class="edit-row">' +
+          '<input class="input" id="edit-text" value="' + esc(editing.text) + '" aria-label="טקסט המשימה">' +
+          segHtml('edit', editing.who) +
+          '<button class="btn primary small" type="button" data-act="save-edit">שמירה</button>' +
+          '<button class="btn ghost small" type="button" data-act="cancel-edit">ביטול</button>' +
+        '</div></li>';
+    }
+    var stamp = t.done
+      ? '<span class="stamp' + (justStamped === t.id ? ' just' : '') + '"><svg aria-hidden="true"><use href="#i-paw"/></svg>הושלם' +
+        (t.doneAt ? ' <small>' + esc(fmtStamp(t.doneAt)) + '</small>' : '') + '</span>'
+      : '';
+    var tools = editMode
+      ? '<span class="task-tools">' +
+          '<button class="icon-btn" type="button" data-act="edit" data-id="' + esc(t.id) + '" aria-label="עריכת המשימה"><svg><use href="#i-pen"/></svg></button>' +
+          '<button class="icon-btn del" type="button" data-act="del-task" data-id="' + esc(t.id) + '" aria-label="מחיקת המשימה"><svg><use href="#i-trash"/></svg></button>' +
+        '</span>'
+      : '';
+    return '<li class="task' + (t.done ? ' done' : '') + '">' +
+      '<button class="check" type="button" role="checkbox" aria-checked="' + !!t.done + '" data-act="toggle" data-id="' + esc(t.id) + '" aria-label="סימון: ' + esc(t.text) + '">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 L10 19 L21 5"/></svg></button>' +
+      '<span class="task-text">' + esc(t.text) + '</span>' +
+      '<span class="who ' + esc(t.who) + '">' + esc(WHO[t.who] || 'שנינו') + '</span>' +
+      stamp + tools +
+    '</li>';
+  }
+
+  function dayHtml(d) {
+    var list = tasksOf(d.id);
+    var done = list.filter(function (t) { return t.done; }).length;
+    var isToday = d.date === todayIso();
+    var dr = drafts[d.id] || { text: '', who: 'both' };
+    var paws = list.map(function (t, i) {
+      return '<svg class="' + (i < done ? 'on' : '') + '" aria-hidden="true"><use href="#i-paw"/></svg>';
+    }).join('');
+    var allDone = list.length > 0 && done === list.length;
+
+    return '<article class="day' + (isToday ? ' today' : '') + '" id="day-' + esc(d.id) + '" aria-label="' + esc(fmtDate(d.date) + ' יום ' + weekday(d.date)) + '">' +
+      (allDone ? '<span class="stamp day-stamp' + (justDay === d.id ? ' just' : '') + '"><svg aria-hidden="true"><use href="#i-paw"/></svg>יום מושלם!</span>' : '') +
+      '<div class="day-head">' +
+        '<div>' +
+          '<div class="day-date"><span class="d">' + esc(fmtDate(d.date)) + '</span><span class="w">יום ' + esc(weekday(d.date)) + '</span>' +
+            (isToday ? '<span class="badge-today">היום</span>' : '') + '</div>' +
+          '<p class="day-sub">דברים לעשות – יוגב ונופר</p>' +
+        '</div>' +
+        '<div class="day-side">' +
+          (list.length ? '<div class="paws" aria-hidden="true">' + paws + '</div>' : '') +
+          '<span class="count">' + done + ' / ' + list.length + ' הושלמו</span>' +
+        '</div>' +
+      '</div>' +
+      (list.length ? '<ul class="tasks">' + list.map(taskHtml).join('') + '</ul>'
+                   : '<p class="hint" style="margin-top:12px">עוד אין משימות ליום הזה. כתבו את הראשונה כאן למטה.</p>') +
+      '<form class="add-task" data-day="' + esc(d.id) + '">' +
+        '<input class="input" id="new-task-' + esc(d.id) + '" placeholder="משימה חדשה ליום הזה…" value="' + esc(dr.text) + '" aria-label="משימה חדשה ל-' + esc(fmtDate(d.date)) + '" maxlength="200">' +
+        segHtml('new-' + d.id, dr.who) +
+        '<button class="btn small primary" type="submit"><svg aria-hidden="true"><use href="#i-plus"/></svg> הוספה</button>' +
+      '</form>' +
+      (editMode
+        ? (confirmDay === d.id
+            ? '<div class="day-danger"><p>למחוק את כל היום עם המשימות שלו?</p>' +
+                '<button class="btn danger small" type="button" data-act="del-day-yes" data-id="' + esc(d.id) + '">כן, למחוק</button>' +
+                '<button class="btn ghost small" type="button" data-act="del-day-no">ביטול</button></div>'
+            : '<div class="day-danger"><button class="btn ghost small" type="button" data-act="del-day" data-id="' + esc(d.id) + '"><svg aria-hidden="true"><use href="#i-trash"/></svg> מחיקת היום</button></div>')
+        : '') +
+    '</article>';
+  }
+
+  function render() {
+    if (!state) return;
+    // keep focus & caret across re-render
+    var ae = document.activeElement, focusId = ae && ae.id, selS = null, selE = null;
+    if (focusId && ae.setSelectionRange && typeof ae.selectionStart === 'number') { selS = ae.selectionStart; selE = ae.selectionEnd; }
+
+    var days = sortedDays();
+    var total = state.tasks.length, done = state.tasks.filter(function (t) { return t.done; }).length;
+    $('overall').innerHTML = '<svg width="16" height="16" aria-hidden="true" style="color:var(--tan)"><use href="#i-paw"/></svg>' +
+      '<span><strong>' + done + '</strong> מתוך <strong>' + total + '</strong> משימות הושלמו</span>';
+
+    if (!days.length) {
+      daysEl.innerHTML = '<div class="empty"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#collie-happy"/></svg>' +
+        '<h2>עוד אין ימים ברשימה</h2><p>לוחצים על "הוספת יום", בוחרים תאריך, ומתחילים לכתוב משימות.</p></div>';
+    } else {
+      daysEl.innerHTML = days.map(dayHtml).join('');
+    }
+
+    if (focusId) {
+      var el = document.getElementById(focusId);
+      if (el) { el.focus({ preventScroll: true }); if (selS != null && el.setSelectionRange) try { el.setSelectionRange(selS, selE); } catch (e) {} }
+    }
+    justStamped = null; justDay = null;
+  }
+
+  function renderLoadError() {
+    daysEl.innerHTML = '<div class="empty"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#collie-puller"/></svg>' +
+      '<h2>הרשימה לא נטענה</h2><p>בדקו שיש חיבור לאינטרנט ושהאתר פתוח מגיטהאב. אפשר ללחוץ על כפתור המצב למעלה כדי לנסות שוב.</p></div>';
+  }
+
+  /* ---------- Events ---------- */
+  daysEl.addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (!b || !daysEl.contains(b)) return;
+
+    if (b.dataset.seg) {
+      var name = b.dataset.seg, who = b.dataset.who;
+      if (name === 'edit' && editing) editing.who = who;
+      else if (name.indexOf('new-') === 0) {
+        var dayId = name.slice(4);
+        drafts[dayId] = drafts[dayId] || { text: '', who: 'both' };
+        drafts[dayId].who = who;
+      }
+      render();
+      return;
+    }
+
+    var actName = b.dataset.act, id = b.dataset.id, t;
+    if (actName === 'toggle') {
+      if (!token) { openSettings(true); return; }
+      t = findTask(state, id); if (!t) return;
+      var newDone = !t.done;
+      if (newDone) {
+        justStamped = id;
+        var others = tasksOf(t.day).filter(function (x) { return x.id !== id; });
+        if (others.every(function (x) { return x.done; })) justDay = t.day;
+      }
+      act({ type: 'toggle', id: id, done: newDone, text: t.text });
+    } else if (actName === 'edit') {
+      t = findTask(state, id); if (!t) return;
+      editing = { id: id, text: t.text, who: t.who || 'both' };
+      render();
+      var inp = $('edit-text'); if (inp) { inp.focus(); inp.select(); }
+    } else if (actName === 'save-edit') {
+      saveEdit();
+    } else if (actName === 'cancel-edit') {
+      editing = null; render();
+    } else if (actName === 'del-task') {
+      t = findTask(state, id); if (!t) return;
+      act({ type: 'delTask', id: id, text: t.text });
+      toast('המשימה נמחקה');
+    } else if (actName === 'del-day') {
+      confirmDay = id; render();
+    } else if (actName === 'del-day-no') {
+      confirmDay = null; render();
+    } else if (actName === 'del-day-yes') {
+      confirmDay = null;
+      act({ type: 'delDay', id: id });
+      toast('היום נמחק');
+    }
+  });
+
+  function saveEdit() {
+    if (!editing) return;
+    var text = ($('edit-text') ? $('edit-text').value : editing.text).trim();
+    if (!text) { toast('כתבו טקסט למשימה'); return; }
+    var op = { type: 'editTask', id: editing.id, text: text, who: editing.who };
+    editing = null;
+    act(op);
+  }
+
+  daysEl.addEventListener('input', function (e) {
+    var el = e.target;
+    if (el.id === 'edit-text' && editing) { editing.text = el.value; return; }
+    var form = el.closest('.add-task');
+    if (form) {
+      var dayId = form.dataset.day;
+      drafts[dayId] = drafts[dayId] || { text: '', who: 'both' };
+      drafts[dayId].text = el.value;
+    }
+  });
+  daysEl.addEventListener('keydown', function (e) {
+    if (e.target.id === 'edit-text') {
+      if (e.key === 'Enter') { e.preventDefault(); saveEdit(); }
+      if (e.key === 'Escape') { editing = null; render(); }
+    }
+  });
+  daysEl.addEventListener('submit', function (e) {
+    var form = e.target.closest('.add-task');
+    if (!form) return;
+    e.preventDefault();
+    var dayId = form.dataset.day;
+    var dr = drafts[dayId] || { text: '', who: 'both' };
+    var text = (form.querySelector('input').value || '').trim();
+    if (!text) { toast('כתבו קודם את המשימה'); return; }
+    if (!token) { openSettings(true); return; }
+    drafts[dayId] = { text: '', who: dr.who };
+    act({ type: 'addTask', id: uid(), day: dayId, text: text, who: dr.who || 'both' });
+    var inp = document.getElementById('new-task-' + dayId); if (inp) inp.focus();
+  });
+
+  /* Add day */
+  var addDayForm = $('add-day'), dateInput = $('new-day-date');
+  function nextFreeDate() {
+    var d = new Date(); var used = {};
+    if (state) state.days.forEach(function (x) { used[x.date] = 1; });
+    for (var i = 0; i < 60; i++) {
+      var iso = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+      if (!used[iso]) return iso;
+      d.setDate(d.getDate() + 1);
+    }
+    return todayIso();
+  }
+  function updatePreview() {
+    var v = dateInput.value, p = $('new-day-preview');
+    if (!v) { p.textContent = 'בחרו תאריך כדי ליצור דף חדש.'; p.className = 'hint'; return; }
+    var exists = state && state.days.some(function (d) { return d.id === v; });
+    p.className = exists ? 'hint err' : 'hint';
+    p.innerHTML = exists ? 'היום הזה כבר ברשימה.'
+      : 'ייפתח דף בשם: <span class="preview-title">' + esc(fmtDate(v) + ' יום ' + weekday(v) + ' – דברים לעשות – יוגב ונופר') + '</span>';
+  }
+  $('btn-add-day').addEventListener('click', function () {
+    var open = addDayForm.hidden;
+    addDayForm.hidden = !open;
+    this.setAttribute('aria-expanded', String(open));
+    if (open) { dateInput.value = nextFreeDate(); updatePreview(); dateInput.focus(); }
+  });
+  dateInput.addEventListener('input', updatePreview);
+  addDayForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = dateInput.value;
+    if (!v || !state) return;
+    if (state.days.some(function (d) { return d.id === v; })) {
+      var el = document.getElementById('day-' + v); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    if (!token) { openSettings(true); return; }
+    act({ type: 'addDay', date: v });
+    addDayForm.hidden = true; $('btn-add-day').setAttribute('aria-expanded', 'false');
+    toast('נוסף יום ' + weekday(v) + ' ' + fmtDate(v));
+    setTimeout(function () {
+      var el = document.getElementById('day-' + v);
+      if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); var inp = document.getElementById('new-task-' + v); if (inp) inp.focus({ preventScroll: true }); }
+    }, 60);
+  });
+
+  /* Edit mode */
+  var editBtn = $('btn-edit');
+  function syncEditBtn() { editBtn.setAttribute('aria-pressed', String(editMode)); }
+  editBtn.addEventListener('click', function () {
+    editMode = !editMode; editing = null; confirmDay = null;
+    LS.set('lyn.edit', editMode ? '1' : '0');
+    syncEditBtn(); render();
+  });
+  syncEditBtn();
+
+  /* Settings dialog */
+  var dlg = $('settings');
+  $('repo-name').textContent = CFG.repo;
+  function openSettings(need) {
+    $('settings-need').hidden = !need;
+    $('token-input').value = '';
+    $('token-remove').hidden = !token;
+    $('settings-msg').className = 'hint';
+    $('settings-msg').textContent = token ? 'המכשיר הזה כבר מחובר. אפשר להדביק מפתח חדש כדי להחליף.' : 'המפתח נשמר רק בדפדפן של המכשיר הזה.';
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  function closeSettings() { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); }
+  $('btn-settings').addEventListener('click', function () { openSettings(false); });
+  $('settings-close').addEventListener('click', closeSettings);
+  $('sync').addEventListener('click', function () {
+    var st = this.dataset.state;
+    if (st === 'error' && token && pending.length) { flush(); return; }
+    if (st === 'readonly' || st === 'auth') { openSettings(st === 'readonly'); return; }
+    setSync('loading'); refresh(false);
+  });
+  $('token-save').addEventListener('click', function () {
+    var v = $('token-input').value.trim(), msg = $('settings-msg');
+    if (!v) { msg.className = 'hint err'; msg.textContent = 'הדביקו קודם את המפתח.'; return; }
+    msg.className = 'hint'; msg.textContent = 'בודקים את המפתח מול גיטהאב…';
+    var prev = token; token = v;
+    ghGet().then(function (remote) {
+      LS.set('lyn.token', v);
+      state = remote.data; sha = remote.sha;
+      pending.length = 0;
+      cacheLocal(); render(); setSync('ok');
+      closeSettings();
+      toast('המכשיר מחובר. מעכשיו כל שינוי נשמר בגיטהאב.');
+    }).catch(function (e) {
+      token = prev;
+      msg.className = 'hint err';
+      msg.textContent = e.status === 401 ? 'גיטהאב לא מזהה את המפתח. בדקו שהעתקתם את כולו.'
+        : (e.status === 403 || e.status === 404) ? 'למפתח אין גישה למאגר ' + CFG.repo + '. בחרו אותו ב-Repository access.'
+        : 'לא הצלחנו להגיע לגיטהאב. בדקו את החיבור ונסו שוב.';
+    });
+  });
+  $('token-remove').addEventListener('click', function () {
+    token = ''; LS.del('lyn.token'); pending.length = 0;
+    setSync('readonly'); closeSettings(); toast('המכשיר נותק מגיטהאב');
+  });
+
+  /* Keep in sync with the other phone */
+  setInterval(function () { if (!document.hidden) refresh(true); }, 45000);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) refresh(true); });
+  window.addEventListener('beforeunload', function (e) { if (pending.length) { flush(); e.preventDefault(); e.returnValue = ''; } });
+
+  /* ---------- Boot ---------- */
+  var cached = LS.get('lyn.cache');
+  if (cached) { try { state = normalize(JSON.parse(cached)); render(); } catch (e) { state = null; } }
+  refresh(false);
+})();
+</script>
+</body>
+</html>
