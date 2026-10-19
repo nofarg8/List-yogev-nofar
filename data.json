@@ -57,6 +57,15 @@
       "done": false,
       "doneAt": null,
       "createdAt": "2026-10-19T09:00:05.000Z"
+    },
+    {
+      "id": "tmvf30d5t64ga",
+      "day": "2026-10-22",
+      "text": "לא להפריע לנופר בבוקר",
+      "who": "both",
+      "done": false,
+      "doneAt": null,
+      "createdAt": "2026-10-19T09:58:31.073Z"
     }
   ]
 }
