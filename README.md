@@ -4,7 +4,7 @@
 
 - `index.html` – האתר כולו.
 - `data.json` – הימים והמשימות. כל סימון, הוספה או עריכה באתר נשמרים כאן כעדכון במאגר.
-- `assets/theme-photo.jpg` – תמונת הנושא.
+- `assets/hero.jpg` – תמונת הבאנר. `assets/og-image.jpg` – התמונה שמופיעה כששולחים את הקישור בוואטסאפ.
 
 ## הפעלה כאתר
 Settings ← Pages ← Source: Deploy from a branch ← Branch: `main`, תיקייה `/ (root)` ← Save.

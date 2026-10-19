@@ -5,11 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דברים לעשות – יוגב ונופר</title>
 <meta name="theme-color" content="#FBF6F1">
+<meta name="description" content="רשימת המשימות של יוגב ונופר. מה שנכתב כאן קורה, מה שבוצע מקבל חותמת, ואוקסי הבורדר קולי עוקבת אחרי כולם.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="To Go List">
+<meta property="og:title" content="דברים לעשות – יוגב ונופר">
+<meta property="og:description" content="רשימת המשימות של יוגב ונופר. מה שנכתב כאן קורה, מה שבוצע מקבל חותמת, ואוקסי הבורדר קולי עוקבת אחרי כולם.">
+<meta property="og:url" content="https://nofarg8.github.io/list-yogev-nofar/">
+<meta property="og:image" content="https://nofarg8.github.io/list-yogev-nofar/assets/og-image.jpg">
+<meta property="og:image:secure_url" content="https://nofarg8.github.io/list-yogev-nofar/assets/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="יוגב מסובך בכבלים ופתקים, נופר מסדרת, ושלט To Go List">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="דברים לעשות – יוגב ונופר">
+<meta name="twitter:description" content="רשימת המשימות של יוגב ונופר. מה שנכתב כאן קורה, מה שבוצע מקבל חותמת, ואוקסי הבורדר קולי עוקבת אחרי כולם.">
+<meta name="twitter:image" content="https://nofarg8.github.io/list-yogev-nofar/assets/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@400;600;700;800&family=Suez+One&display=swap">
 <style>
-/* Layout: a shared notebook on a warm desk. Hero with the couple's polaroid and a border-collie sticker,
+/* Layout: a shared notebook on a warm desk. Wide banner photo with a border-collie sticker,
    then one notebook page per day, each task stamped "הושלם" in red ink once it's done. */
 :root {
   --paper: #FBF6F1;
@@ -82,13 +99,20 @@ button { cursor: pointer; }
 }
 
 /* ---------- Hero ---------- */
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 20px 28px;
-  align-items: center;
-  padding-block: 8px 4px;
+.hero { display: grid; gap: 18px; }
+.banner { position: relative; margin: 0; }
+.banner img {
+  width: 100%; height: auto; aspect-ratio: 1400 / 734; object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 2px 4px rgba(40,20,10,.12), 0 18px 40px rgba(40,20,10,.22);
 }
+.collie-sticker {
+  position: absolute; width: 112px; height: 112px;
+  bottom: -30px; left: 18px;
+  filter: drop-shadow(0 6px 10px rgba(40,20,10,.25));
+  transform: rotate(-8deg);
+}
+.hero-text { display: grid; gap: 0; padding-inline-end: 130px; }
 .eyebrow {
   font-family: var(--font-hand);
   font-size: 1.7rem;
@@ -100,52 +124,27 @@ button { cursor: pointer; }
 h1 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(2.4rem, 7vw, 3.9rem);
+  font-size: clamp(2.3rem, 6.5vw, 3.6rem);
   line-height: 1.02;
   margin: 0;
   text-wrap: balance;
 }
 .names {
+  justify-self: start;
   display: inline-flex; align-items: center; gap: 10px;
   margin-top: 10px;
   font-family: var(--font-display);
   font-size: clamp(1.3rem, 3.6vw, 1.75rem);
-  background: var(--heart-soft);
+  background: var(--sticky);
   color: var(--ink);
   padding: 4px 16px 6px;
   border-radius: 4px;
   transform: rotate(-1.5deg);
   box-shadow: var(--shadow);
 }
-.names svg { width: 22px; height: 22px; color: var(--heart); }
-.hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; align-items: center; }
-
-.polaroid-wrap { position: relative; width: 210px; justify-self: end; }
-.polaroid {
-  margin: 0;
-  background: #FFFFFF;
-  padding: 10px 10px 34px;
-  box-shadow: 0 2px 4px rgba(40,20,10,.12), 0 14px 34px rgba(40,20,10,.18);
-  transform: rotate(3.5deg);
-  border-radius: 2px;
-}
-.polaroid img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 28%; }
-.polaroid figcaption {
-  font-family: var(--font-hand); font-size: 1.45rem; color: #3A2A24;
-  text-align: center; margin-top: 4px; line-height: 1.1;
-}
-.tape {
-  position: absolute; top: -12px; left: 50%; width: 92px; height: 26px;
-  transform: translateX(-50%) rotate(-4deg);
-  background: var(--sticky); opacity: .85;
-  box-shadow: 0 1px 2px rgba(0,0,0,.08);
-}
-.collie-sticker {
-  position: absolute; width: 104px; height: 104px;
-  bottom: -26px; right: -34px;
-  filter: drop-shadow(0 6px 10px rgba(40,20,10,.25));
-  transform: rotate(-8deg);
-}
+.names svg { width: 22px; height: 22px; color: var(--tan); }
+.tagline { margin: 12px 0 0; color: var(--muted); font-size: 1.05rem; max-width: 60ch; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; align-items: center; }
 
 /* ---------- Chips & pills ---------- */
 .pill {
@@ -375,9 +374,9 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
 
 @media (max-width: 640px) {
   body { font-size: 16px; }
-  .hero { grid-template-columns: minmax(0, 1fr); }
-  .polaroid-wrap { width: 170px; justify-self: center; order: -1; margin-top: 8px; }
-  .collie-sticker { width: 84px; height: 84px; right: -40px; bottom: -18px; }
+  .banner img { border-radius: 12px; }
+  .collie-sticker { width: 76px; height: 76px; left: 8px; bottom: -24px; }
+  .hero-text { padding-inline-end: 0; padding-top: 20px; }
   .day { padding: 18px 14px 14px; padding-inline-start: 44px; }
   .day::before { inset-inline-start: 32px; }
   .day::after { inset-inline-start: 8px; }
@@ -398,7 +397,6 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
   <defs>
     <clipPath id="sticker-clip"><circle cx="100" cy="100" r="92"/></clipPath>
     <symbol id="i-paw" viewBox="0 0 24 24"><g fill="currentColor"><ellipse cx="12" cy="16" rx="5.4" ry="4.6"/><ellipse cx="5.2" cy="10.2" rx="2.3" ry="2.8"/><ellipse cx="9.3" cy="6" rx="2.3" ry="2.9"/><ellipse cx="14.7" cy="6" rx="2.3" ry="2.9"/><ellipse cx="18.8" cy="10.2" rx="2.3" ry="2.8"/></g></symbol>
-    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21z"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
     <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
     <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -455,24 +453,21 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
 
 <main class="wrap">
   <header class="hero">
-    <div>
-      <p class="eyebrow">יומן משימות משותף</p>
+    <figure class="banner">
+      <img src="assets/hero.jpg" alt="יוגב מסובך בכבלים ובפתקים צבעוניים, נופר מסדרת אותו, ולידם שלט To Go List" width="1400" height="734">
+      <svg class="collie-sticker" viewBox="0 0 200 200" role="img" aria-label="איור של כלב בורדר קולי"><use href="#collie-happy"/></svg>
+    </figure>
+    <div class="hero-text">
+      <p class="eyebrow">To Go List</p>
       <h1>דברים לעשות</h1>
-      <div class="names"><span>יוגב ונופר</span><svg aria-hidden="true"><use href="#i-heart"/></svg></div>
+      <div class="names"><span>יוגב ונופר</span><svg aria-hidden="true"><use href="#i-paw"/></svg></div>
+      <p class="tagline">מה שנכתב כאן קורה, מה שבוצע מקבל חותמת, ואוקסי עוקבת אחרי כולם.</p>
       <div class="hero-meta">
         <span class="pill" id="overall" aria-live="polite">טוען…</span>
         <button class="pill sync" id="sync" type="button" data-state="loading" aria-label="מצב שמירה לגיטהאב">
           <span class="dot" aria-hidden="true"></span><span id="sync-text">טוען מגיטהאב…</span>
         </button>
       </div>
-    </div>
-    <div class="polaroid-wrap">
-      <span class="tape" aria-hidden="true"></span>
-      <figure class="polaroid">
-        <img src="assets/theme-photo.jpg" alt="יוגב ונופר ליד שולחן מלא פתקים ורשימת משימות" width="560" height="995">
-        <figcaption>צוות משימות</figcaption>
-      </figure>
-      <svg class="collie-sticker" viewBox="0 0 200 200" role="img" aria-label="איור של כלב בורדר קולי"><use href="#collie-happy"/></svg>
     </div>
   </header>
 
