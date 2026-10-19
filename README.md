@@ -8,7 +8,7 @@
 
 ## הפעלה כאתר
 Settings ← Pages ← Source: Deploy from a branch ← Branch: `main`, תיקייה `/ (root)` ← Save.
-אחרי דקה-שתיים האתר זמין בכתובת `https://nofarg8.github.io/list-yogev-nofar/`.
+אחרי דקה-שתיים האתר זמין בכתובת `https://nofarg8.github.io/List-yogev-nofar/`.
 
 ## חיבור מכשיר לשמירה
 באתר לוחצים "חיבור לגיטהאב" ומדביקים מפתח גישה (Fine-grained token) עם גישה רק למאגר הזה והרשאת Contents: Read and write.
