@@ -272,6 +272,7 @@ h1 {
 .check svg { width: 22px; height: 22px; overflow: visible; }
 .check path { fill: none; stroke: var(--stamp); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 30; stroke-dashoffset: 30; transition: stroke-dashoffset .35s ease; }
 .task.done .check path { stroke-dashoffset: 0; }
+.task-text .by { display: block; font-size: .78rem; font-weight: 600; color: var(--muted); text-decoration: none; }
 .task-text { flex: 1 1 150px; min-width: 0; font-size: 1.08rem; font-weight: 600; overflow-wrap: anywhere; }
 .task.done .task-text { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--stamp); text-decoration-thickness: 2px; }
 .who {
@@ -374,6 +375,11 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
 .dlg a { color: var(--tan); font-weight: 700; }
 .dlg code { background: var(--surface-2); border: 1px solid var(--line); border-radius: 5px; padding: 0 5px; direction: ltr; unicode-bidi: isolate; }
 .dlg .row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-start; }
+.who-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.who-pick .btn { justify-content: center; font-size: 1.25rem; padding: 16px; font-family: var(--font-display); font-weight: 400; }
+.who-pick .btn[data-me="yogev"] { background: var(--tan-soft); }
+.who-pick .btn[data-me="nofar"] { background: var(--heart-soft); }
+.me-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-weight: 700; }
 .dlg .need { background: var(--sticky); padding: 8px 12px; border-radius: 8px; font-weight: 700; }
 
 .toast {
@@ -543,11 +549,23 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
       <label for="token-input">מפתח גישה</label>
       <input class="input" id="token-input" type="password" autocomplete="off" spellcheck="false" dir="ltr" placeholder="github_pat_…">
     </div>
+    <div class="me-line" id="me-line" hidden><span id="me-text"></span><button class="btn ghost small" type="button" id="me-change">החלפה</button></div>
     <p class="hint" id="settings-msg" aria-live="polite">המפתח נשמר רק בדפדפן של המכשיר הזה.</p>
     <div class="row">
       <button class="btn primary" type="button" id="token-save">שמירה וחיבור</button>
       <button class="btn danger small" type="button" id="token-remove" hidden>ניתוק המכשיר</button>
       <button class="btn ghost" type="button" id="settings-close">סגירה</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="who-dlg" aria-labelledby="who-title">
+  <form class="dlg" method="dialog">
+    <h2 id="who-title">מי משתמש במכשיר הזה?</h2>
+    <p>שואלים פעם אחת בלבד. מעכשיו יירשם לבד מי הוסיף כל משימה ומי סימן אותה.</p>
+    <div class="who-pick">
+      <button class="btn" type="button" data-me="yogev">יוגב</button>
+      <button class="btn" type="button" data-me="nofar">נופר</button>
     </div>
   </form>
 </dialog>
@@ -583,6 +601,8 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
   var pending = [];          // ops not yet committed
   var flushing = false, flushTimer = null;
   var editMode = LS.get('lyn.edit') === '1';
+  var me = LS.get('lyn.me') || '';      // 'yogev' | 'nofar' — who uses this device
+  var afterWho = null;
   var drafts = {};           // dayId -> { text, who }
   var editing = null;        // { id, text, who }
   var confirmDay = null;
@@ -692,10 +712,10 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
         s.tasks = s.tasks.filter(function (x) { return x.day !== op.id; });
         break;
       case 'addTask':
-        if (!findTask(s, op.id)) s.tasks.push({ id: op.id, day: op.day, text: op.text, who: op.who, done: false, doneAt: null, createdAt: op.at });
+        if (!findTask(s, op.id)) s.tasks.push({ id: op.id, day: op.day, text: op.text, who: op.who, by: op.by || null, done: false, doneAt: null, doneBy: null, createdAt: op.at });
         break;
       case 'toggle':
-        t = findTask(s, op.id); if (t) { t.done = op.done; t.doneAt = op.done ? op.at : null; }
+        t = findTask(s, op.id); if (t) { t.done = op.done; t.doneAt = op.done ? op.at : null; t.doneBy = op.done ? (op.by || null) : null; }
         break;
       case 'editTask':
         t = findTask(s, op.id); if (t) { t.text = op.text; t.who = op.who; }
@@ -721,6 +741,8 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
   function act(op) {
     if (!state) return;
     if (!token) { openSettings(true); return; }
+    if (!me) { askWho(function () { act(op); }); return; }
+    op.by = op.by || me;
     op.at = op.at || new Date().toISOString();
     applyOp(state, op);
     pending.push(op);
@@ -742,7 +764,8 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
 
     function attempt() {
       var n = pending.length;
-      var msg = opLabel(pending[0]) + (n > 1 ? ' (+' + (n - 1) + ')' : '');
+      var first = pending[0];
+      var msg = (first.by && WHO[first.by] ? WHO[first.by] + ': ' : '') + opLabel(first) + (n > 1 ? ' (+' + (n - 1) + ')' : '');
       var body = { message: msg.slice(0, 120), content: enc(JSON.stringify(state, null, 2) + '\n'), branch: CFG.branch };
       if (sha) body.sha = sha;
       return ghPut(body).then(function (j) {
@@ -819,7 +842,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     }
     var stamp = t.done
       ? '<span class="stamp' + (justStamped === t.id ? ' just' : '') + '"><span class="oxy" aria-hidden="true"><i></i></span>' +
-        '<span class="st-text">הושלם' + (t.doneAt ? '<small>' + esc(fmtStamp(t.doneAt)) + '</small>' : '') + '</span></span>'
+        '<span class="st-text">הושלם' + ((t.doneBy || t.doneAt) ? '<small>' + esc((t.doneBy && WHO[t.doneBy] ? WHO[t.doneBy] + (t.doneAt ? ' · ' : '') : '') + fmtStamp(t.doneAt)) + '</small>' : '') + '</span></span>'
       : '';
     var tools = editMode
       ? '<span class="task-tools">' +
@@ -830,7 +853,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     return '<li class="task' + (t.done ? ' done' : '') + '">' +
       '<button class="check" type="button" role="checkbox" aria-checked="' + !!t.done + '" data-act="toggle" data-id="' + esc(t.id) + '" aria-label="סימון: ' + esc(t.text) + '">' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 L10 19 L21 5"/></svg></button>' +
-      '<span class="task-text">' + esc(t.text) + '</span>' +
+      '<span class="task-text">' + esc(t.text) + (t.by && WHO[t.by] ? '<span class="by">נוסף ע"י ' + esc(WHO[t.by]) + '</span>' : '') + '</span>' +
       '<span class="who ' + esc(t.who) + '">' + esc(WHO[t.who] || 'שנינו') + '</span>' +
       stamp + tools +
     '</li>';
@@ -1059,6 +1082,8 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     $('settings-need').hidden = !need;
     $('token-input').value = '';
     $('token-remove').hidden = !token;
+    $('me-line').hidden = !me;
+    $('me-text').textContent = me ? 'המכשיר הזה שייך ל' + WHO[me] : '';
     $('settings-msg').className = 'hint';
     $('settings-msg').textContent = token ? 'המכשיר הזה כבר מחובר. אפשר להדביק מפתח חדש כדי להחליף.' : 'המפתח נשמר רק בדפדפן של המכשיר הזה.';
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
@@ -1084,6 +1109,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
       cacheLocal(); render(); setSync('ok');
       closeSettings();
       toast('המכשיר מחובר. מעכשיו כל שינוי נשמר בגיטהאב.');
+      if (!me) askWho(null);
     }).catch(function (e) {
       token = prev;
       msg.className = 'hint err';
@@ -1097,6 +1123,21 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     setSync('readonly'); closeSettings(); toast('המכשיר נותק מגיטהאב');
   });
 
+  /* Who uses this device */
+  var whoDlg = $('who-dlg');
+  function askWho(then) {
+    afterWho = then || null;
+    if (whoDlg.showModal) { if (!whoDlg.open) whoDlg.showModal(); } else whoDlg.setAttribute('open', '');
+  }
+  whoDlg.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-me]'); if (!b) return;
+    me = b.dataset.me; LS.set('lyn.me', me);
+    if (whoDlg.close) whoDlg.close(); else whoDlg.removeAttribute('open');
+    toast('היי ' + WHO[me] + '! מעכשיו השם שלך יירשם לבד.');
+    var fn = afterWho; afterWho = null; if (fn) fn();
+  });
+  $('me-change').addEventListener('click', function () { closeSettings(); askWho(null); });
+
   /* Keep in sync with the other phone */
   setInterval(function () { if (!document.hidden) refresh(true); }, 45000);
   document.addEventListener('visibilitychange', function () { if (!document.hidden) refresh(true); });
@@ -1106,6 +1147,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
   var cached = LS.get('lyn.cache');
   if (cached) { try { state = normalize(JSON.parse(cached)); render(); } catch (e) { state = null; } }
   refresh(false);
+  if (token && !me) setTimeout(function () { askWho(null); }, 600);
 })();
 </script>
 </body>
