@@ -321,6 +321,17 @@ h1 {
   pointer-events: none;
 }
 .task-tools { display: flex; gap: 4px; margin-inline-start: auto; }
+.icon-btn.cal { color: var(--tan); }
+.icon-btn.cal[aria-expanded="true"] { background: var(--tan-soft); border-color: var(--tan); }
+.cal-panel {
+  width: 100%; display: flex; flex-wrap: wrap; gap: 10px; align-items: end;
+  background: var(--surface-2); border: 1.5px dashed var(--tan); border-radius: 10px;
+  padding: 12px 14px; margin-block: 2px 8px;
+}
+.cal-panel .field { width: 140px; }
+.cal-panel .hint { width: 100%; }
+a.btn { text-decoration: none; color: inherit; }
+a.btn.primary { color: #FFF7EF; }
 .icon-btn {
   width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--line);
   background: var(--surface); display: grid; place-items: center; padding: 0; color: var(--muted);
@@ -417,6 +428,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
     <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></symbol>
+    <symbol id="i-calplus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></g></symbol>
     <symbol id="i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></g></symbol>
 
 
@@ -603,6 +615,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
   var drafts = {};           // dayId -> { text, who }
   var editing = null;        // { id, text, who }
   var confirmDay = null;
+  var calOpen = null, calTime = '';     // calendar panel: task id + optional hour
   var justStamped = null, justDay = null;
 
   var $ = function (id) { return document.getElementById(id); };
@@ -820,6 +833,53 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
       .sort(function (a, b) { return (a.createdAt || '') < (b.createdAt || '') ? -1 : 1; });
   }
 
+  /* ---------- Calendar ---------- */
+  var SITE_URL = 'https://' + CFG.owner + '.github.io/' + CFG.repo + '/';
+  function compact(iso) { return iso.replace(/-/g, ''); }
+  function nextDayIso(iso) { var d = parseDate(iso); d.setDate(d.getDate() + 1); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function calDetails(t) {
+    return 'מתוך "דברים לעשות – יוגב ונופר"' + (WHO[t.who] ? ' · אחראי: ' + WHO[t.who] : '') + '\n' + SITE_URL;
+  }
+  function eventRange(t, time) {
+    if (!time) return null;
+    var p = t.day.split('-').map(Number), h = time.split(':').map(Number);
+    var start = new Date(p[0], p[1] - 1, p[2], h[0], h[1]);
+    return { start: start, end: new Date(start.getTime() + 60 * 60 * 1000) };
+  }
+  function localStamp(d) { return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + 'T' + pad(d.getHours()) + pad(d.getMinutes()) + '00'; }
+  function utcStamp(d) { return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); }
+  function googleCalUrl(t, time) {
+    var r = eventRange(t, time);
+    var dates = r ? localStamp(r.start) + '/' + localStamp(r.end) : compact(t.day) + '/' + compact(nextDayIso(t.day));
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+      '&text=' + encodeURIComponent(t.text) +
+      '&dates=' + dates +
+      (r ? '&ctz=' + encodeURIComponent(Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Jerusalem') : '') +
+      '&details=' + encodeURIComponent(calDetails(t));
+  }
+  function icsEscape(v) { return String(v).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n'); }
+  function downloadIcs(t, time) {
+    var r = eventRange(t, time);
+    var lines = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//yogev-nofar//to-go-list//HE', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:' + t.id + '-' + Date.now() + '@yogev-nofar',
+      'DTSTAMP:' + utcStamp(new Date()),
+      r ? 'DTSTART:' + utcStamp(r.start) : 'DTSTART;VALUE=DATE:' + compact(t.day),
+      r ? 'DTEND:' + utcStamp(r.end) : 'DTEND;VALUE=DATE:' + compact(nextDayIso(t.day)),
+      'SUMMARY:' + icsEscape(t.text),
+      'DESCRIPTION:' + icsEscape(calDetails(t)),
+      'URL:' + SITE_URL,
+      'END:VEVENT', 'END:VCALENDAR'
+    ];
+    var a = document.createElement('a');
+    var url = URL.createObjectURL(new Blob([lines.join('\r\n') + '\r\n'], { type: 'text/calendar;charset=utf-8' }));
+    a.href = url;
+    a.download = 'to-go-list-' + t.day + '.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+  }
+
   function segHtml(name, who) {
     return '<div class="seg" role="group" aria-label="מי אחראי">' +
       ['yogev', 'nofar', 'both'].map(function (w) {
@@ -841,18 +901,27 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
       ? '<span class="stamp' + (justStamped === t.id ? ' just' : '') + '"><span class="oxy" aria-hidden="true"><i></i></span>' +
         '<span class="st-text">הושלם' + ((t.doneBy || t.doneAt) ? '<small>' + esc((t.doneBy && WHO[t.doneBy] ? WHO[t.doneBy] + (t.doneAt ? ' · ' : '') : '') + fmtStamp(t.doneAt)) + '</small>' : '') + '</span></span>'
       : '';
+    var calBtn = '<button class="icon-btn cal" type="button" data-act="cal" data-id="' + esc(t.id) + '" aria-expanded="' + (calOpen === t.id) + '" aria-label="הוספה ליומן" title="הוספה ליומן"><svg><use href="#i-calplus"/></svg></button>';
     var tools = editMode
-      ? '<span class="task-tools">' +
+      ? '<span class="task-tools">' + calBtn +
           '<button class="icon-btn" type="button" data-act="edit" data-id="' + esc(t.id) + '" aria-label="עריכת המשימה"><svg><use href="#i-pen"/></svg></button>' +
           '<button class="icon-btn del" type="button" data-act="del-task" data-id="' + esc(t.id) + '" aria-label="מחיקת המשימה"><svg><use href="#i-trash"/></svg></button>' +
         '</span>'
+      : '<span class="task-tools">' + calBtn + '</span>';
+    var calPanel = calOpen === t.id
+      ? '<div class="cal-panel">' +
+          '<div class="field"><label for="cal-time">שעה (לא חובה)</label><input class="input" type="time" id="cal-time" value="' + esc(calTime) + '"></div>' +
+          '<a class="btn primary small" id="cal-google" target="_blank" rel="noopener" href="' + esc(googleCalUrl(t, calTime)) + '">יומן Google</a>' +
+          '<button class="btn small" type="button" data-act="cal-ics" data-id="' + esc(t.id) + '">אייפון / יומן אחר</button>' +
+          '<p class="hint">בלי שעה, המשימה תיכנס ליומן כאירוע של יום שלם ב-' + esc(fmtDate(t.day)) + '. עם שעה, היא תיכנס לשעה אחת.</p>' +
+        '</div>'
       : '';
     return '<li class="task' + (t.done ? ' done' : '') + '">' +
       '<button class="check" type="button" role="checkbox" aria-checked="' + !!t.done + '" data-act="toggle" data-id="' + esc(t.id) + '" aria-label="סימון: ' + esc(t.text) + '">' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 L10 19 L21 5"/></svg></button>' +
       '<span class="task-text">' + esc(t.text) + (t.by && WHO[t.by] ? '<span class="by">נוסף ע"י ' + esc(WHO[t.by]) + '</span>' : '') + '</span>' +
       '<span class="who ' + esc(t.who) + '">' + esc(WHO[t.who] || 'שנינו') + '</span>' +
-      stamp + tools +
+      stamp + tools + calPanel +
     '</li>';
   }
 
@@ -954,6 +1023,13 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
         if (others.every(function (x) { return x.done; })) justDay = t.day;
       }
       act({ type: 'toggle', id: id, done: newDone, text: t.text });
+    } else if (actName === 'cal') {
+      calOpen = calOpen === id ? null : id; calTime = '';
+      render();
+    } else if (actName === 'cal-ics') {
+      t = findTask(state, id); if (!t) return;
+      downloadIcs(t, calTime);
+      toast('נוצר קובץ יומן. פותחים אותו כדי להוסיף את האירוע.');
     } else if (actName === 'edit') {
       t = findTask(state, id); if (!t) return;
       editing = { id: id, text: t.text, who: t.who || 'both' };
@@ -990,6 +1066,12 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
   daysEl.addEventListener('input', function (e) {
     var el = e.target;
     if (el.id === 'edit-text' && editing) { editing.text = el.value; return; }
+    if (el.id === 'cal-time' && calOpen) {
+      calTime = el.value;
+      var tt = findTask(state, calOpen), g = $('cal-google');
+      if (tt && g) g.href = googleCalUrl(tt, calTime);
+      return;
+    }
     var form = el.closest('.add-task');
     if (form) {
       var dayId = form.dataset.day;
