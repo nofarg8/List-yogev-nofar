@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@400;600;700;800&family=Suez+One&display=swap">
 <style>
 /* Layout: a shared notebook on a warm desk. Wide banner photo with a border-collie sticker,
-   then one notebook page per day, each task stamped "הושלם" in red ink once it's done. */
+   then one notebook page per day, each finished task gets a red-ink Oxy stamp. */
 :root {
   --paper: #FBF6F1;
   --surface: #FFFFFF;
@@ -287,25 +287,28 @@ h1 {
 .who.both::before { background: var(--ink); }
 
 .stamp {
-  display: inline-flex; align-items: center; gap: 6px;
+  --stamp-hole: var(--surface);
+  display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--font-display); color: var(--stamp);
   border: 3px double var(--stamp); border-radius: 6px;
-  padding: 1px 10px 2px; line-height: 1.2; font-size: 1.05rem;
+  padding: 3px 10px 3px 12px; line-height: 1.2; font-size: 1.05rem;
   transform: rotate(-8deg);
   white-space: nowrap;
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.75'/%3E%3C/filter%3E%3Crect width='160' height='60' filter='url(%23n)'/%3E%3C/svg%3E");
           mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.75'/%3E%3C/filter%3E%3Crect width='160' height='60' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-.stamp svg { width: 16px; height: 16px; }
-.stamp small { font-family: var(--font-body); font-weight: 700; font-size: .72rem; opacity: .9; font-variant-numeric: tabular-nums; }
+.stamp .oxy { width: 40px; height: 40px; flex: none; margin-block: -2px; }
+.stamp .st-text { display: grid; line-height: 1.1; }
+.stamp small { font-family: var(--font-body); font-weight: 700; font-size: .7rem; opacity: .9; font-variant-numeric: tabular-nums; }
 .stamp.just { animation: stampIn .5s cubic-bezier(.2, 1.4, .4, 1) both; }
+.day-stamp .oxy { width: 44px; height: 44px; }
 @keyframes stampIn {
   0% { transform: scale(2.4) rotate(-22deg); opacity: 0; }
   55% { transform: scale(.9) rotate(-7deg); opacity: 1; }
   100% { transform: scale(1) rotate(-8deg); opacity: 1; }
 }
 .day-stamp {
-  position: absolute; top: 18px; inset-inline-end: 150px;
+  position: absolute; top: 14px; inset-inline-end: 150px;
   font-size: 1.5rem; padding: 4px 14px; transform: rotate(-11deg);
   pointer-events: none;
 }
@@ -402,6 +405,24 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></symbol>
     <symbol id="i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></g></symbol>
+
+    <!-- Oxy as a rubber-stamp illustration: ink = currentColor, paper = --stamp-hole -->
+    <symbol id="i-oxy-ink" viewBox="0 0 200 200">
+      <path d="M50 84 C40 58 42 34 54 20 C70 28 86 44 92 60 Z" fill="currentColor"/>
+      <path d="M150 84 C160 58 158 34 146 20 C130 28 114 44 108 60 Z" fill="currentColor"/>
+      <path d="M58 70 C54 54 55 40 60 32 C70 40 79 50 84 60 Z" fill="var(--stamp-hole)" opacity=".55"/>
+      <path d="M142 70 C146 54 145 40 140 32 C130 40 121 50 116 60 Z" fill="var(--stamp-hole)" opacity=".55"/>
+      <path d="M100 44 C136 44 160 66 161 98 C162 122 151 142 136 154 L64 154 C49 142 38 122 39 98 C40 66 64 44 100 44 Z" fill="currentColor"/>
+      <path d="M100 52 C96 52 94 63 93 76 C91 93 81 104 71 117 C63 129 65 146 77 156 L123 156 C135 146 137 129 129 117 C119 104 109 93 107 76 C106 63 104 52 100 52 Z" fill="var(--stamp-hole)"/>
+      <circle cx="76" cy="98" r="10" fill="var(--stamp-hole)"/>
+      <circle cx="124" cy="98" r="10" fill="var(--stamp-hole)"/>
+      <circle cx="77" cy="99" r="5.8" fill="currentColor"/>
+      <circle cx="125" cy="99" r="5.8" fill="currentColor"/>
+      <path d="M86 126 C86 119 114 119 114 126 C114 134 105 139 100 139 C95 139 86 134 86 126 Z" fill="currentColor"/>
+      <path d="M100 139 L100 145 M100 145 C96 151 88 151 84 146 M100 145 C104 151 112 151 116 146" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M93 148 C92 162 108 162 107 148 C104 151 96 151 93 148 Z" fill="currentColor"/>
+      <path d="M44 196 C40 170 58 156 74 158 M156 196 C160 170 142 156 126 158" stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round"/>
+    </symbol>
 
     <!-- Border collie head: semi-prick ears, white blaze, tan brows -->
     <g id="collie-head">
@@ -509,7 +530,6 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     <svg viewBox="0 0 200 200" role="img" aria-label="אוקסי עם צעצוע פולר"><use href="#collie-puller"/></svg>
     <div>
       <div class="hand">אוקסי שומרת על הרשימה</div>
-      <div>כל שינוי נשמר כקובץ במאגר בגיטהאב</div>
     </div>
   </footer>
 </main>
@@ -520,11 +540,15 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     <p class="need" id="settings-need" hidden>כדי לשמור שינויים צריך לחבר את המכשיר הזה פעם אחת.</p>
     <p>הרשימה נשמרת בקובץ <code>data.json</code> במאגר שלכם. כדי שהמכשיר יוכל לשמור, מדביקים כאן מפתח גישה של גיטהאב. עושים את זה פעם אחת בכל טלפון או מחשב.</p>
     <ol>
-      <li>נכנסים ל<a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">יצירת מפתח בגיטהאב</a>.</li>
-      <li>תחת Repository access בוחרים Only select repositories, ואז את <code id="repo-name">list-yogev-nofar</code>.</li>
-      <li>תחת Permissions בוחרים Contents ומסמנים Read and write.</li>
-      <li>לוחצים Generate token, מעתיקים ומדביקים כאן.</li>
+      <li>נכנסים ל<a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">יצירת מפתח בגיטהאב</a> (מחוברים לחשבון nofarg8).</li>
+      <li>ב-Token name כותבים שם, למשל: <strong>טלפון של נופר</strong>.</li>
+      <li>ב-Expiration בוחרים No expiration, או שנה קדימה. אחרת המפתח יפסיק לעבוד אחרי 30 יום.</li>
+      <li>ב-Repository access בוחרים Only select repositories, ובתפריט שנפתח בוחרים את <code id="repo-name">List-yogev-nofar</code>.</li>
+      <li>ב-Permissions לוחצים Add permissions (או פותחים Repository permissions), בוחרים Contents, ומשנים את Access ל-Read and write.</li>
+      <li>לוחצים Generate token למטה, ומאשרים שוב אם מתבקשים.</li>
+      <li>מעתיקים את המפתח שמתחיל ב-<code>github_pat_</code> ומדביקים אותו כאן. גיטהאב מציג אותו פעם אחת בלבד.</li>
     </ol>
+    <p class="hint">זה בחינם. ליוגב אפשר לשלוח את אותו מפתח בהודעה פרטית ולהדביק גם אצלו.</p>
     <div class="field">
       <label for="token-input">מפתח גישה</label>
       <input class="input" id="token-input" type="password" autocomplete="off" spellcheck="false" dir="ltr" placeholder="github_pat_…">
@@ -545,7 +569,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
   'use strict';
 
   /* ---------- Config ---------- */
-  var CFG = { owner: 'nofarg8', repo: 'list-yogev-nofar', branch: 'main', path: 'data.json' };
+  var CFG = { owner: 'nofarg8', repo: 'List-yogev-nofar', branch: 'main', path: 'data.json' };
   if (/\.github\.io$/i.test(location.hostname)) {
     CFG.owner = location.hostname.split('.')[0];
     var seg = location.pathname.split('/').filter(Boolean)[0];
@@ -804,8 +828,8 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
         '</div></li>';
     }
     var stamp = t.done
-      ? '<span class="stamp' + (justStamped === t.id ? ' just' : '') + '"><svg aria-hidden="true"><use href="#i-paw"/></svg>הושלם' +
-        (t.doneAt ? ' <small>' + esc(fmtStamp(t.doneAt)) + '</small>' : '') + '</span>'
+      ? '<span class="stamp' + (justStamped === t.id ? ' just' : '') + '"><svg class="oxy" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-oxy-ink"/></svg>' +
+        '<span class="st-text">הושלם' + (t.doneAt ? '<small>' + esc(fmtStamp(t.doneAt)) + '</small>' : '') + '</span></span>'
       : '';
     var tools = editMode
       ? '<span class="task-tools">' +
@@ -833,7 +857,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     var allDone = list.length > 0 && done === list.length;
 
     return '<article class="day' + (isToday ? ' today' : '') + '" id="day-' + esc(d.id) + '" aria-label="' + esc(fmtDate(d.date) + ' יום ' + weekday(d.date)) + '">' +
-      (allDone ? '<span class="stamp day-stamp' + (justDay === d.id ? ' just' : '') + '"><svg aria-hidden="true"><use href="#i-paw"/></svg>יום מושלם!</span>' : '') +
+      (allDone ? '<span class="stamp day-stamp' + (justDay === d.id ? ' just' : '') + '"><svg class="oxy" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-oxy-ink"/></svg>יום מושלם!</span>' : '') +
       '<div class="day-head">' +
         '<div>' +
           '<div class="day-date"><span class="d">' + esc(fmtDate(d.date)) + '</span><span class="w">יום ' + esc(weekday(d.date)) + '</span>' +
