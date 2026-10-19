@@ -497,9 +497,6 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
         <svg aria-hidden="true"><use href="#i-pen"/></svg> מצב עריכה
       </button>
     </div>
-    <button class="btn ghost small" id="btn-settings" type="button">
-      <svg aria-hidden="true"><use href="#i-link"/></svg> חיבור לגיטהאב
-    </button>
   </div>
 
   <form class="add-day" id="add-day" hidden>
@@ -658,8 +655,8 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
   function setSync(st, text) {
     var labels = {
       loading: 'טוען מגיטהאב…',
-      ok: 'שמור בגיטהאב',
-      saving: 'שומר בגיטהאב…',
+      ok: 'הכל שמור',
+      saving: 'שומר…',
       readonly: 'תצוגה בלבד · לחצו לחיבור',
       error: 'השמירה נכשלה · לחצו לנסות שוב',
       auth: 'המפתח לא תקין · לחצו לחיבור מחדש',
@@ -1089,12 +1086,11 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
   }
   function closeSettings() { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); }
-  $('btn-settings').addEventListener('click', function () { openSettings(false); });
   $('settings-close').addEventListener('click', closeSettings);
   $('sync').addEventListener('click', function () {
     var st = this.dataset.state;
     if (st === 'error' && token && pending.length) { flush(); return; }
-    if (st === 'readonly' || st === 'auth') { openSettings(st === 'readonly'); return; }
+    if (st === 'readonly' || st === 'auth' || st === 'ok') { openSettings(st === 'readonly'); return; }
     setSync('loading'); refresh(false);
   });
   $('token-save').addEventListener('click', function () {
