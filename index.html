@@ -387,6 +387,35 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
 .dlg a { color: var(--tan); font-weight: 700; }
 .dlg code { background: var(--surface-2); border: 1px solid var(--line); border-radius: 5px; padding: 0 5px; direction: ltr; unicode-bidi: isolate; }
 .dlg .row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-start; }
+/* ---------- Personal corners ---------- */
+.personal-wrap { display: grid; gap: 14px; }
+.personal-wrap > h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.5rem, 4.5vw, 2rem); margin: 0; }
+.personal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; align-items: start; }
+.corner {
+  border-radius: 6px; padding: 20px 20px 16px; box-shadow: var(--shadow);
+  display: grid; gap: 14px; min-width: 0; position: relative;
+}
+.corner.nofar { background: var(--heart-soft); transform: rotate(-.5deg); }
+.corner.yogev { background: var(--tan-soft); transform: rotate(.5deg); }
+.corner-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.corner-head h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; margin: 0; line-height: 1.1; }
+.lock { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 800; padding: 3px 10px; border-radius: 999px; background: var(--surface); color: var(--muted); }
+.lock svg { width: 14px; height: 14px; }
+.plist { background: var(--surface); border-radius: 6px; padding: 14px 16px 12px; display: grid; gap: 8px; }
+.plist-head { display: flex; align-items: flex-start; gap: 8px; }
+.plist-head h4 { margin: 0; font-size: 1.08rem; font-weight: 800; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.plist ul { margin: 0; padding: 0; list-style: none; display: grid; }
+.pitem { display: flex; gap: 10px; align-items: flex-start; padding-block: 7px; border-bottom: 1px solid var(--line); }
+.pitem:last-child { border-bottom: 0; }
+.pitem .dot { width: 8px; height: 8px; border-radius: 50%; margin-top: .6em; flex: none; background: currentColor; }
+.corner.nofar .pitem .dot { color: var(--heart); }
+.corner.yogev .pitem .dot { color: var(--tan); }
+.pitem .ptext { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.pitem .task-tools { margin-inline-start: 0; }
+.p-add { display: flex; gap: 8px; flex-wrap: wrap; }
+.p-add .input { flex: 1 1 180px; }
+.corner .empty-note { margin: 0; color: var(--muted); font-size: .95rem; }
+@media (max-width: 720px) { .personal { grid-template-columns: minmax(0, 1fr); } }
 .who-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .who-pick .btn { justify-content: center; font-size: 1.25rem; padding: 16px; font-family: var(--font-display); font-weight: 400; }
 .who-pick .btn[data-me="yogev"] { background: var(--tan-soft); }
@@ -430,6 +459,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></symbol>
     <symbol id="i-calplus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></g></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></g></symbol>
     <symbol id="i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></g></symbol>
 
 
@@ -532,6 +562,11 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     </div>
   </section>
 
+  <section class="personal-wrap" aria-labelledby="personal-title">
+    <h2 id="personal-title">פינות אישיות</h2>
+    <div class="personal" id="personal"></div>
+  </section>
+
   <footer>
     <svg viewBox="0 0 200 200" role="img" aria-label="אוקסי עם צעצוע פולר"><use href="#collie-puller"/></svg>
     <div>
@@ -559,7 +594,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
       <label for="token-input">מפתח גישה</label>
       <input class="input" id="token-input" type="password" autocomplete="off" spellcheck="false" dir="ltr" placeholder="github_pat_…">
     </div>
-    <div class="me-line" id="me-line" hidden><span id="me-text"></span><button class="btn ghost small" type="button" id="me-change">החלפה</button></div>
+    <div class="me-line" id="me-line" hidden><span id="me-text"></span></div>
     <p class="hint" id="settings-msg" aria-live="polite">המפתח נשמר רק בדפדפן של המכשיר הזה.</p>
     <div class="row">
       <button class="btn primary" type="button" id="token-save">שמירה וחיבור</button>
@@ -613,6 +648,8 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
   var editMode = LS.get('lyn.edit') === '1';
   var me = LS.get('lyn.me') || '';      // 'yogev' | 'nofar' — who uses this device
   var afterWho = null;
+  var pDrafts = {};          // listId -> new item text ; 'list-'+owner -> new list title
+  var pEditing = null;       // { owner, listId, itemId|null, text }
   var drafts = {};           // dayId -> { text, who }
   var editing = null;        // { id, text, who }
   var confirmDay = null;
@@ -643,12 +680,18 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     return pad(d.getDate()) + '.' + pad(d.getMonth() + 1) + ' · ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
   }
   function uid() { return 't' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
-  function emptyData() { return { version: 1, days: [], tasks: [] }; }
+  function emptyData() { return { version: 1, days: [], tasks: [], personal: { nofar: { lists: [] }, yogev: { lists: [] } } }; }
   function normalize(d) {
     d = d && typeof d === 'object' ? d : emptyData();
     d.days = Array.isArray(d.days) ? d.days : [];
     d.tasks = Array.isArray(d.tasks) ? d.tasks : [];
     d.version = d.version || 1;
+    d.personal = d.personal && typeof d.personal === 'object' ? d.personal : {};
+    ['nofar', 'yogev'].forEach(function (k) {
+      var c = d.personal[k] = d.personal[k] && typeof d.personal[k] === 'object' ? d.personal[k] : {};
+      c.lists = Array.isArray(c.lists) ? c.lists : [];
+      c.lists.forEach(function (l) { l.items = Array.isArray(l.items) ? l.items : []; });
+    });
     return d;
   }
   function enc(str) {
@@ -737,8 +780,24 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
       case 'delTask':
         s.tasks = s.tasks.filter(function (x) { return x.id !== op.id; });
         break;
+      default:
+        applyPersonal(s, op);
     }
     return s;
+  }
+  function corner(s, owner) { normalize(s); return s.personal[owner]; }
+  function findList(s, owner, id) { var ls = corner(s, owner).lists; for (var i = 0; i < ls.length; i++) if (ls[i].id === id) return ls[i]; return null; }
+  function applyPersonal(s, op) {
+    if (!op.owner || op.by !== op.owner) return;   // only the owner may change their corner
+    var c = corner(s, op.owner), l;
+    switch (op.type) {
+      case 'pAddList': if (!findList(s, op.owner, op.id)) c.lists.push({ id: op.id, title: op.title, items: [], createdAt: op.at }); break;
+      case 'pEditList': l = findList(s, op.owner, op.id); if (l) l.title = op.title; break;
+      case 'pDelList': c.lists = c.lists.filter(function (x) { return x.id !== op.id; }); break;
+      case 'pAddItem': l = findList(s, op.owner, op.listId); if (l && !l.items.some(function (x) { return x.id === op.id; })) l.items.push({ id: op.id, text: op.text, at: op.at }); break;
+      case 'pEditItem': l = findList(s, op.owner, op.listId); if (l) l.items.forEach(function (x) { if (x.id === op.id) x.text = op.text; }); break;
+      case 'pDelItem': l = findList(s, op.owner, op.listId); if (l) l.items = l.items.filter(function (x) { return x.id !== op.id; }); break;
+    }
   }
   function opLabel(op) {
     switch (op.type) {
@@ -748,6 +807,12 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
       case 'toggle': return (op.done ? 'הושלם: ' : 'בוטל סימון: ') + (op.text || '');
       case 'editTask': return 'עריכה: ' + op.text;
       case 'delTask': return 'נמחקה משימה: ' + (op.text || '');
+      case 'pAddList': return WHO[op.owner] + ' בלבד: רשימה חדשה: ' + op.title;
+      case 'pEditList': return WHO[op.owner] + ' בלבד: שם רשימה: ' + op.title;
+      case 'pDelList': return WHO[op.owner] + ' בלבד: נמחקה רשימה';
+      case 'pAddItem': return WHO[op.owner] + ' בלבד: ' + op.text;
+      case 'pEditItem': return WHO[op.owner] + ' בלבד: עריכה: ' + op.text;
+      case 'pDelItem': return WHO[op.owner] + ' בלבד: נמחק פריט';
     }
     return 'עדכון רשימה';
   }
@@ -757,6 +822,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     if (!token) { openSettings(true); return; }
     if (!me) { askWho(function () { act(op); }); return; }
     op.by = op.by || me;
+    if (op.owner && op.owner !== me) { toast('רק ' + WHO[op.owner] + ' יכול/ה לכתוב כאן'); return; }
     op.at = op.at || new Date().toISOString();
     applyOp(state, op);
     pending.push(op);
@@ -975,6 +1041,52 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     '</article>';
   }
 
+  function cornerHtml(owner) {
+    var c = state.personal[owner], mine = me === owner;
+    var canEdit = mine && !!token;
+    var lists = c.lists.map(function (l) {
+      var editingTitle = pEditing && pEditing.listId === l.id && !pEditing.itemId;
+      var head = editingTitle
+        ? '<div class="edit-row"><input class="input" id="p-edit" value="' + esc(pEditing.text) + '" aria-label="שם הרשימה">' +
+            '<button class="btn primary small" type="button" data-pact="save">שמירה</button><button class="btn ghost small" type="button" data-pact="cancel">ביטול</button></div>'
+        : '<div class="plist-head"><h4>' + esc(l.title) + '</h4>' +
+            (canEdit && editMode ? '<span class="task-tools">' +
+              '<button class="icon-btn" type="button" data-pact="edit-list" data-list="' + esc(l.id) + '" aria-label="שינוי שם הרשימה"><svg><use href="#i-pen"/></svg></button>' +
+              '<button class="icon-btn del" type="button" data-pact="del-list" data-list="' + esc(l.id) + '" aria-label="מחיקת הרשימה"><svg><use href="#i-trash"/></svg></button></span>' : '') +
+          '</div>';
+      var items = l.items.map(function (it) {
+        if (pEditing && pEditing.itemId === it.id) {
+          return '<li class="pitem"><div class="edit-row"><input class="input" id="p-edit" value="' + esc(pEditing.text) + '" aria-label="עריכת הפריט">' +
+            '<button class="btn primary small" type="button" data-pact="save">שמירה</button><button class="btn ghost small" type="button" data-pact="cancel">ביטול</button></div></li>';
+        }
+        return '<li class="pitem"><span class="dot" aria-hidden="true"></span><span class="ptext">' + esc(it.text) + '</span>' +
+          (canEdit && editMode ? '<span class="task-tools">' +
+            '<button class="icon-btn" type="button" data-pact="edit-item" data-list="' + esc(l.id) + '" data-item="' + esc(it.id) + '" aria-label="עריכת הפריט"><svg><use href="#i-pen"/></svg></button>' +
+            '<button class="icon-btn del" type="button" data-pact="del-item" data-list="' + esc(l.id) + '" data-item="' + esc(it.id) + '" aria-label="מחיקת הפריט"><svg><use href="#i-trash"/></svg></button></span>' : '') +
+          '</li>';
+      }).join('');
+      var add = canEdit
+        ? '<form class="p-add" data-pform="item" data-owner="' + owner + '" data-list="' + esc(l.id) + '">' +
+            '<input class="input" id="p-new-' + esc(l.id) + '" placeholder="להוסיף לרשימה…" maxlength="300" value="' + esc(pDrafts[l.id] || '') + '" aria-label="פריט חדש ב' + esc(l.title) + '">' +
+            '<button class="btn small primary" type="submit"><svg aria-hidden="true"><use href="#i-plus"/></svg> הוספה</button></form>'
+        : '';
+      return '<div class="plist">' + head + (items ? '<ul>' + items + '</ul>' : '<p class="empty-note">הרשימה ריקה.</p>') + add + '</div>';
+    }).join('');
+    var newList = canEdit
+      ? '<form class="p-add" data-pform="list" data-owner="' + owner + '">' +
+          '<input class="input" id="p-newlist-' + owner + '" placeholder="שם לרשימה חדשה…" maxlength="120" value="' + esc(pDrafts['list-' + owner] || '') + '" aria-label="רשימה חדשה">' +
+          '<button class="btn small" type="submit"><svg aria-hidden="true"><use href="#i-plus"/></svg> רשימה חדשה</button></form>'
+      : '';
+    var note = !c.lists.length
+      ? '<p class="empty-note">' + (canEdit ? 'עוד אין כאן רשימות. ' + (owner === 'nofar' ? 'כתבי שם לרשימה ולחצי' : 'כתוב שם לרשימה ולחץ') + ' "רשימה חדשה".' : 'עוד אין כאן כלום.') + '</p>'
+      : '';
+    return '<article class="corner ' + owner + '" aria-label="' + WHO[owner] + ' בלבד">' +
+      '<div class="corner-head"><h3>' + WHO[owner] + ' בלבד:</h3>' +
+        '<span class="lock"><svg aria-hidden="true"><use href="#i-lock"/></svg>' + (mine ? (owner === 'nofar' ? 'רק את עורכת כאן' : 'רק אתה עורך כאן') : 'רק ' + WHO[owner] + (owner === 'nofar' ? ' עורכת' : ' עורך') + ' · קריאה בלבד') + '</span>' +
+      '</div>' + note + lists + newList +
+    '</article>';
+  }
+
   function render() {
     if (!state) return;
     // keep focus & caret across re-render
@@ -992,6 +1104,8 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     } else {
       daysEl.innerHTML = days.map(dayHtml).join('');
     }
+    normalize(state);
+    $('personal').innerHTML = cornerHtml('nofar') + cornerHtml('yogev');
 
     if (focusId) {
       var el = document.getElementById(focusId);
@@ -1108,6 +1222,56 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     drafts[dayId] = { text: '', who: dr.who };
     act({ type: 'addTask', id: uid(), day: dayId, text: text, who: dr.who || 'both' });
     var inp = document.getElementById('new-task-' + dayId); if (inp) inp.focus();
+  });
+
+  /* Personal corners */
+  var personalEl = $('personal');
+  function savePEdit() {
+    if (!pEditing) return;
+    var inp = $('p-edit'), text = (inp ? inp.value : pEditing.text).trim();
+    if (!text) { toast('הטקסט ריק'); return; }
+    var e = pEditing; pEditing = null;
+    if (e.itemId) act({ type: 'pEditItem', owner: e.owner, listId: e.listId, id: e.itemId, text: text });
+    else act({ type: 'pEditList', owner: e.owner, id: e.listId, title: text });
+  }
+  personalEl.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-pact]'); if (!b) return;
+    var a = b.dataset.pact, owner = me, listId = b.dataset.list, itemId = b.dataset.item, l;
+    if (a === 'save') return savePEdit();
+    if (a === 'cancel') { pEditing = null; render(); return; }
+    l = findList(state, owner, listId); if (!l) return;
+    if (a === 'edit-list') { pEditing = { owner: owner, listId: listId, itemId: null, text: l.title }; render(); var i1 = $('p-edit'); if (i1) i1.focus(); }
+    else if (a === 'del-list') { act({ type: 'pDelList', owner: owner, id: listId }); toast('הרשימה נמחקה'); }
+    else if (a === 'edit-item') {
+      var it = l.items.filter(function (x) { return x.id === itemId; })[0]; if (!it) return;
+      pEditing = { owner: owner, listId: listId, itemId: itemId, text: it.text }; render(); var i2 = $('p-edit'); if (i2) i2.focus();
+    }
+    else if (a === 'del-item') { act({ type: 'pDelItem', owner: owner, listId: listId, id: itemId }); toast('נמחק'); }
+  });
+  personalEl.addEventListener('input', function (e) {
+    var el = e.target;
+    if (el.id === 'p-edit' && pEditing) { pEditing.text = el.value; return; }
+    var f = el.closest('[data-pform]'); if (!f) return;
+    pDrafts[f.dataset.pform === 'list' ? 'list-' + f.dataset.owner : f.dataset.list] = el.value;
+  });
+  personalEl.addEventListener('keydown', function (e) {
+    if (e.target.id !== 'p-edit') return;
+    if (e.key === 'Enter') { e.preventDefault(); savePEdit(); }
+    if (e.key === 'Escape') { pEditing = null; render(); }
+  });
+  personalEl.addEventListener('submit', function (e) {
+    var f = e.target.closest('[data-pform]'); if (!f) return;
+    e.preventDefault();
+    var owner = f.dataset.owner, text = (f.querySelector('input').value || '').trim();
+    if (!text) return;
+    if (f.dataset.pform === 'list') {
+      pDrafts['list-' + owner] = '';
+      act({ type: 'pAddList', owner: owner, id: uid(), title: text });
+    } else {
+      pDrafts[f.dataset.list] = '';
+      act({ type: 'pAddItem', owner: owner, listId: f.dataset.list, id: uid(), text: text });
+      var inp = document.getElementById('p-new-' + f.dataset.list); if (inp) inp.focus();
+    }
   });
 
   /* Add day */
@@ -1228,7 +1392,6 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     toast('היי ' + WHO[me] + '! מעכשיו השם שלך יירשם לבד.');
     var fn = afterWho; afterWho = null; if (fn) fn();
   });
-  $('me-change').addEventListener('click', function () { closeSettings(); askWho(null); });
 
   /* Keep in sync with the other phone */
   setInterval(function () { if (!document.hidden) refresh(true); }, 45000);
