@@ -17,17 +17,7 @@
       "createdAt": "2026-10-19T11:11:44.209Z"
     }
   ],
-  "tasks": [
-    {
-      "id": "tmvf5n7bsxo6d",
-      "day": "2026-10-28",
-      "text": "נופר נוסעת לסופ״ש ארוך אצל יוגב",
-      "who": "nofar",
-      "done": false,
-      "doneAt": null,
-      "createdAt": "2026-10-19T11:12:15.832Z"
-    }
-  ],
+  "tasks": [],
   "personal": {
     "yogev": {
       "lists": [
