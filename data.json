@@ -17,7 +17,19 @@
       "createdAt": "2026-10-19T11:11:44.209Z"
     }
   ],
-  "tasks": [],
+  "tasks": [
+    {
+      "id": "tmvi31wmb8t43",
+      "day": "2026-10-21",
+      "text": "יוגב חוצפן",
+      "who": "yogev",
+      "by": "nofar",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-10-21T12:23:01.475Z"
+    }
+  ],
   "personal": {
     "yogev": {
       "lists": [
