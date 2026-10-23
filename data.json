@@ -35,9 +35,9 @@
       "text": "יוגב מחקן",
       "who": "yogev",
       "by": "nofar",
-      "done": false,
-      "doneAt": null,
-      "doneBy": null,
+      "done": true,
+      "doneAt": "2026-10-23T08:07:40.560Z",
+      "doneBy": "yogev",
       "createdAt": "2026-10-21T12:23:07.915Z"
     }
   ],
