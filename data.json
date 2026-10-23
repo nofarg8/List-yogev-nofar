@@ -72,6 +72,17 @@
       "doneAt": null,
       "doneBy": null,
       "createdAt": "2026-10-23T08:15:51.738Z"
+    },
+    {
+      "id": "tmvkp4m55zrxr",
+      "day": "2026-10-29",
+      "text": "9:30 נוסעים לשבת באתנחתא באדירים ארוחת בוקר",
+      "who": "both",
+      "by": "yogev",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-10-23T08:16:31.769Z"
     }
   ],
   "personal": {
