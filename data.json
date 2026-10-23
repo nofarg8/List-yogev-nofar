@@ -61,6 +61,17 @@
       "doneAt": null,
       "doneBy": null,
       "createdAt": "2026-10-23T08:14:46.739Z"
+    },
+    {
+      "id": "tmvkp3r96p6r2",
+      "day": "2026-10-29",
+      "text": "6:00 יוגב קם לתפור את הבישולים לסופש",
+      "who": "yogev",
+      "by": "yogev",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-10-23T08:15:51.738Z"
     }
   ],
   "personal": {
