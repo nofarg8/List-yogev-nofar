@@ -154,6 +154,17 @@
       "doneAt": "2026-10-23T11:05:42.179Z",
       "doneBy": "yogev",
       "createdAt": "2026-10-23T11:02:01.851Z"
+    },
+    {
+      "id": "tmvkv7anra195",
+      "day": "2026-10-30",
+      "text": "לנופר חשוב לנסוע בבוקר הזה לרותי ונתן, אולי ניתן להעביר את הקניות לחמישי ב 0930",
+      "who": "both",
+      "by": "nofar",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-10-23T11:06:34.551Z"
     }
   ],
   "personal": {
