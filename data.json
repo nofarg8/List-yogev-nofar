@@ -150,9 +150,9 @@
       "text": "בדיקה בדיקה האם קיבלת את המייל הזה 2",
       "who": "nofar",
       "by": "nofar",
-      "done": false,
-      "doneAt": null,
-      "doneBy": null,
+      "done": true,
+      "doneAt": "2026-10-23T11:05:42.179Z",
+      "doneBy": "yogev",
       "createdAt": "2026-10-23T11:02:01.851Z"
     }
   ],
