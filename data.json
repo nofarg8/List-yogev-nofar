@@ -143,6 +143,17 @@
       "doneAt": null,
       "doneBy": null,
       "createdAt": "2026-10-23T10:54:53.552Z"
+    },
+    {
+      "id": "tmvkv1g8rwooy",
+      "day": "2026-10-23",
+      "text": "בדיקה בדיקה האם קיבלת את המייל הזה 2",
+      "who": "nofar",
+      "by": "nofar",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-10-23T11:02:01.851Z"
     }
   ],
   "personal": {
