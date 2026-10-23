@@ -139,9 +139,9 @@
       "text": "בדיקה בדיקה האם קיבלת אימייל",
       "who": "nofar",
       "by": "nofar",
-      "done": false,
-      "doneAt": null,
-      "doneBy": null,
+      "done": true,
+      "doneAt": "2026-10-23T11:05:42.901Z",
+      "doneBy": "yogev",
       "createdAt": "2026-10-23T10:54:53.552Z"
     },
     {
