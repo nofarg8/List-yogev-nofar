@@ -34,6 +34,17 @@
       "doneAt": "2026-10-23T08:07:40.560Z",
       "doneBy": "yogev",
       "createdAt": "2026-10-21T12:23:07.915Z"
+    },
+    {
+      "id": "tmvkp1wh79hon",
+      "day": "2026-10-28",
+      "text": "נופר נוסעת ליוגב לעפולה",
+      "who": "nofar",
+      "by": "yogev",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-10-23T08:14:25.195Z"
     }
   ],
   "personal": {
