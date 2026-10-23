@@ -132,6 +132,17 @@
       "doneAt": null,
       "doneBy": null,
       "createdAt": "2026-10-23T08:27:15.761Z"
+    },
+    {
+      "id": "tmvkus9rkaan6",
+      "day": "2026-10-23",
+      "text": "בדיקה בדיקה האם קיבלת אימייל",
+      "who": "nofar",
+      "by": "nofar",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-10-23T10:54:53.552Z"
     }
   ],
   "personal": {
