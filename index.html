@@ -766,6 +766,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
         break;
       case 'delDay':
         s.days = s.days.filter(function (d) { return d.id !== op.id; });
+        s.tasks.filter(function (x) { return x.day === op.id; }).forEach(function (x) { logDeleted(s, x, op); });
         s.tasks = s.tasks.filter(function (x) { return x.day !== op.id; });
         break;
       case 'addTask':
@@ -778,12 +779,20 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
         t = findTask(s, op.id); if (t) { t.text = op.text; t.who = op.who; }
         break;
       case 'delTask':
+        t = findTask(s, op.id); if (t) logDeleted(s, t, op);
         s.tasks = s.tasks.filter(function (x) { return x.id !== op.id; });
         break;
       default:
         applyPersonal(s, op);
     }
     return s;
+  }
+  // remember deleted tasks (last 50) so the other person can be told by email
+  function logDeleted(s, t, op) {
+    s.deleted = Array.isArray(s.deleted) ? s.deleted : [];
+    if (s.deleted.some(function (x) { return x.id === t.id; })) return;
+    s.deleted.push({ id: t.id, day: t.day, text: t.text, who: t.who, by: op.by || null, at: op.at });
+    if (s.deleted.length > 50) s.deleted = s.deleted.slice(-50);
   }
   function corner(s, owner) { normalize(s); return s.personal[owner]; }
   function findList(s, owner, id) { var ls = corner(s, owner).lists; for (var i = 0; i < ls.length; i++) if (ls[i].id === id) return ls[i]; return null; }
