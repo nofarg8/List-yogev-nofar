@@ -83,6 +83,17 @@
       "doneAt": null,
       "doneBy": null,
       "createdAt": "2026-10-23T08:16:31.769Z"
+    },
+    {
+      "id": "tmvkp52es1qfn",
+      "day": "2026-10-29",
+      "text": "נוסעים לבקר את רותי ונתן",
+      "who": "both",
+      "by": "yogev",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-10-23T08:16:52.852Z"
     }
   ],
   "personal": {
