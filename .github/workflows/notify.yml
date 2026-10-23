@@ -1,0 +1,53 @@
+name: Email on new items
+
+on:
+  push:
+    branches: [main]
+    paths: [data.json]
+
+# A burst of changes becomes one email: each new run cancels the waiting one,
+# and the survivor reports everything since the last email (tag "notified").
+concurrency:
+  group: notify-email
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    env:
+      MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+    steps:
+      - name: Wait for more changes
+        run: sleep 120
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Find what changed since the last email
+        id: base
+        run: |
+          git fetch --tags --force
+          if git rev-parse -q --verify refs/tags/notified >/dev/null; then
+            echo "ref=notified" >> "$GITHUB_OUTPUT"
+          else
+            echo "ref=${{ github.event.before }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Send email
+        if: ${{ env.MAIL_PASSWORD != '' }}
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: |
+          git show "${{ steps.base.outputs.ref }}:data.json" > /tmp/old.json 2>/dev/null || echo '{}' > /tmp/old.json
+          python3 scripts/notify.py /tmp/old.json data.json
+
+      - name: Remember what was emailed
+        if: ${{ env.MAIL_PASSWORD != '' }}
+        run: |
+          git tag -f notified HEAD
+          git push -f origin refs/tags/notified

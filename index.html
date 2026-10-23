@@ -762,7 +762,7 @@ dialog::backdrop { background: rgba(20, 12, 8, .45); }
     var t;
     switch (op.type) {
       case 'addDay':
-        if (!s.days.some(function (d) { return d.id === op.date; })) s.days.push({ id: op.date, date: op.date, createdAt: op.at });
+        if (!s.days.some(function (d) { return d.id === op.date; })) s.days.push({ id: op.date, date: op.date, by: op.by || null, createdAt: op.at });
         break;
       case 'delDay':
         s.days = s.days.filter(function (d) { return d.id !== op.id; });
