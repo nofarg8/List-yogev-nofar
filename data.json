@@ -165,17 +165,6 @@
       "doneAt": null,
       "doneBy": null,
       "createdAt": "2026-10-23T11:06:34.551Z"
-    },
-    {
-      "id": "tmvl5kni51pyk",
-      "day": "2026-10-23",
-      "text": "להתקשר ליוגב וידאו להגיד לו לילה טוב😊",
-      "who": "nofar",
-      "by": "yogev",
-      "done": false,
-      "doneAt": null,
-      "doneBy": null,
-      "createdAt": "2026-10-23T15:56:53.885Z"
     }
   ],
   "personal": {
@@ -326,5 +315,15 @@
         }
       ]
     }
-  }
+  },
+  "deleted": [
+    {
+      "id": "tmvl5kni51pyk",
+      "day": "2026-10-23",
+      "text": "להתקשר ליוגב וידאו להגיד לו לילה טוב😊",
+      "who": "nofar",
+      "by": "yogev",
+      "at": "2026-10-24T07:10:55.515Z"
+    }
+  ]
 }
