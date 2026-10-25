@@ -160,6 +160,17 @@
       "doneAt": null,
       "doneBy": null,
       "createdAt": "2026-10-25T18:19:10.866Z"
+    },
+    {
+      "id": "tmvo5kjwqpu3a",
+      "day": "2026-10-28",
+      "text": "ניסע למרכזה לחפש עציצים פלסטיק לנופר",
+      "who": "both",
+      "by": "yogev",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-10-25T18:20:07.754Z"
     }
   ],
   "personal": {
