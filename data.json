@@ -182,6 +182,17 @@
       "doneAt": null,
       "doneBy": null,
       "createdAt": "2026-10-25T18:21:33.318Z"
+    },
+    {
+      "id": "tmvozs4nac521",
+      "day": "2026-10-28",
+      "text": "יוגב צריך לבדוק את פס הרצועה של אוקסי",
+      "who": "yogev",
+      "by": "nofar",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-10-26T08:25:49.702Z"
     }
   ],
   "personal": {
