@@ -156,9 +156,9 @@
       "text": "16:00 לצאת לרכבת לת״א",
       "who": "yogev",
       "by": "yogev",
-      "done": false,
-      "doneAt": null,
-      "doneBy": null,
+      "done": true,
+      "doneAt": "2026-11-03T12:36:18.606Z",
+      "doneBy": "yogev",
       "createdAt": "2026-10-25T18:21:33.318Z"
     },
     {
