@@ -183,6 +183,17 @@
       "doneAt": "2026-11-03T12:35:38.572Z",
       "doneBy": "yogev",
       "createdAt": "2026-10-26T08:27:01.322Z"
+    },
+    {
+      "id": "tmw0ob2kiaf9c",
+      "day": "2026-11-07",
+      "text": "מדברת עם יוגב",
+      "who": "nofar",
+      "by": "yogev",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-11-03T12:37:52.194Z"
     }
   ],
   "personal": {
