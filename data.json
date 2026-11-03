@@ -194,6 +194,17 @@
       "doneAt": null,
       "doneBy": null,
       "createdAt": "2026-11-03T12:37:52.194Z"
+    },
+    {
+      "id": "tmw0p232q1nsm",
+      "day": "2026-11-07",
+      "text": "מדבר עם נופר",
+      "who": "yogev",
+      "by": "nofar",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-11-03T12:58:52.563Z"
     }
   ],
   "personal": {
