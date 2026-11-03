@@ -189,9 +189,9 @@
       "text": "קמים ב0630 לנסוע לירושלים",
       "who": "both",
       "by": "nofar",
-      "done": false,
-      "doneAt": null,
-      "doneBy": null,
+      "done": true,
+      "doneAt": "2026-11-03T12:35:43.395Z",
+      "doneBy": "yogev",
       "createdAt": "2026-10-26T08:26:37.331Z"
     },
     {
