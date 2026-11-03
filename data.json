@@ -200,9 +200,9 @@
       "text": "בהצלחה ליוגבבבב  מרגשש 🥰🐶",
       "who": "both",
       "by": "nofar",
-      "done": false,
-      "doneAt": null,
-      "doneBy": null,
+      "done": true,
+      "doneAt": "2026-11-03T12:35:38.572Z",
+      "doneBy": "yogev",
       "createdAt": "2026-10-26T08:27:01.322Z"
     }
   ],
