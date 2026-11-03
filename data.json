@@ -79,9 +79,9 @@
       "text": "9:30 נוסעים לשבת באתנחתא באדירים ארוחת בוקר",
       "who": "both",
       "by": "yogev",
-      "done": false,
-      "doneAt": null,
-      "doneBy": null,
+      "done": true,
+      "doneAt": "2026-11-03T12:35:54.268Z",
+      "doneBy": "yogev",
       "createdAt": "2026-10-23T08:16:31.769Z"
     },
     {
