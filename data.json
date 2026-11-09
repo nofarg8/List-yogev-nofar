@@ -189,6 +189,17 @@
       "doneAt": "2026-11-03T12:35:38.572Z",
       "doneBy": "yogev",
       "createdAt": "2026-10-26T08:27:01.322Z"
+    },
+    {
+      "id": "tmw9lmnvc6gir",
+      "day": "2026-11-13",
+      "text": "יוגב בא לתא והולכים בערב להופעה",
+      "who": "both",
+      "by": "nofar",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-11-09T18:32:49.752Z"
     }
   ],
   "personal": {
