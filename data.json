@@ -202,9 +202,9 @@
       "text": "יוגב בא לתא והולכים בערב להופעה",
       "who": "both",
       "by": "nofar",
-      "done": false,
-      "doneAt": null,
-      "doneBy": null,
+      "done": true,
+      "doneAt": "2026-11-15T08:04:40.502Z",
+      "doneBy": "yogev",
       "createdAt": "2026-11-09T18:32:49.752Z"
     },
     {
