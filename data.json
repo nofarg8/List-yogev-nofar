@@ -223,6 +223,17 @@
       "doneAt": null,
       "doneBy": null,
       "createdAt": "2026-11-09T18:45:25.017Z"
+    },
+    {
+      "id": "tmwoyhxbu93js",
+      "day": "2026-11-21",
+      "text": "אוסף את נופר מירושלים",
+      "who": "yogev",
+      "by": "yogev",
+      "done": false,
+      "doneAt": null,
+      "doneBy": null,
+      "createdAt": "2026-11-20T12:29:36.378Z"
     }
   ],
   "personal": {
